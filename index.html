@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="A quiet place to come when you need comfort, a verse, or just a moment to breathe.">
+  <meta name="theme-color" content="#f7f3ee">
+  <title>For You</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to content</a>
+
+  <div id="app">
+    <!-- Header -->
+    <header class="app-header" id="app-header">
+      <div class="header-inner">
+        <button class="logo-btn" id="logo-btn" aria-label="Go to home">
+          <span class="logo-text">for you</span>
+        </button>
+        <nav class="desktop-nav" aria-label="Main navigation">
+          <button class="nav-link" data-view="home">Home</button>
+          <button class="nav-link" data-view="openWhen">Open When</button>
+          <button class="nav-link" data-view="journal">Journal</button>
+          <button class="nav-link" data-view="favorites">Favorites</button>
+          <button class="nav-link" data-view="memories">Memories</button>
+          <button class="nav-link" data-view="music">Music</button>
+          <button class="nav-link" data-view="settings" aria-label="Settings">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <!-- HOME VIEW -->
+      <section id="view-home" class="view active" aria-label="Home">
+        <div class="home-hero">
+          <p class="greeting" id="greeting-text">Hey, you.</p>
+          <h1 class="hero-title">Whatever kind of day you're having,<br>you don't have to figure everything out right now.</h1>
+          <p class="hero-sub">What do you need?</p>
+        </div>
+        <div class="mood-grid" id="mood-grid" role="list">
+          <!-- populated by JS -->
+        </div>
+        <div class="home-extra">
+          <button class="text-btn" id="personal-msg-btn">Something I want you to remember</button>
+        </div>
+      </section>
+
+      <!-- COMFORT FLOW VIEW -->
+      <section id="view-comfort" class="view" aria-label="Comfort experience" hidden>
+        <div class="comfort-container">
+          <button class="back-btn" id="comfort-back" aria-label="Go back">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 18l-6-6 6-6"/></svg>
+            Back
+          </button>
+          <div id="comfort-step" class="comfort-step">
+            <!-- steps rendered by JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- OPEN WHEN VIEW -->
+      <section id="view-openWhen" class="view" aria-label="Open When letters" hidden>
+        <div class="section-header">
+          <h2 class="section-title">Open When...</h2>
+          <p class="section-desc">Little letters for the moments that need them.</p>
+        </div>
+        <div class="openwhen-grid" id="openwhen-grid" role="list">
+          <!-- populated by JS -->
+        </div>
+      </section>
+
+      <!-- JOURNAL VIEW -->
+      <section id="view-journal" class="view" aria-label="Journal" hidden>
+        <div class="section-header">
+          <h2 class="section-title">Journal</h2>
+          <p class="section-desc">A quiet place for whatever is on your heart.</p>
+        </div>
+        <div class="journal-layout">
+          <div class="journal-composer">
+            <label for="journal-title" class="sr-only">Entry title</label>
+            <input type="text" id="journal-title" class="journal-title-input" placeholder="A title, if you want one…" maxlength="120" autocomplete="off">
+            <label for="journal-body" class="sr-only">Journal entry</label>
+            <textarea id="journal-body" class="journal-body-input" placeholder="Write whatever you need to…" rows="8" maxlength="5000"></textarea>
+            <div class="journal-composer-footer">
+              <span class="char-count" id="char-count" aria-live="polite">0 / 5000</span>
+              <div class="composer-actions">
+                <button class="btn btn-ghost" id="journal-clear" type="button">Clear</button>
+                <button class="btn btn-primary" id="journal-save" type="button">Save entry</button>
+              </div>
+            </div>
+            <p class="privacy-note">Entries stay on this device only. Clearing browser data will remove them.</p>
+          </div>
+          <div class="journal-list-area">
+            <div class="journal-search-row">
+              <label for="journal-search" class="sr-only">Search entries</label>
+              <input type="search" id="journal-search" class="search-input" placeholder="Search your entries…" autocomplete="off">
+            </div>
+            <div id="journal-list" class="journal-list" role="list">
+              <!-- entries rendered by JS -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAVORITES VIEW -->
+      <section id="view-favorites" class="view" aria-label="Favorites" hidden>
+        <div class="section-header">
+          <h2 class="section-title">Favorites</h2>
+          <p class="section-desc">Things you wanted to keep close.</p>
+        </div>
+        <div class="filter-row" id="fav-filters" role="group" aria-label="Filter favorites">
+          <button class="filter-chip active" data-filter="all">All</button>
+          <button class="filter-chip" data-filter="verse">Verses</button>
+          <button class="filter-chip" data-filter="comfort">Comfort</button>
+          <button class="filter-chip" data-filter="openWhen">Open When</button>
+        </div>
+        <div id="favorites-list" class="favorites-list" role="list">
+          <!-- populated by JS -->
+        </div>
+      </section>
+
+      <!-- MEMORIES VIEW -->
+      <section id="view-memories" class="view" aria-label="Memories" hidden>
+        <div class="section-header">
+          <h2 class="section-title">Memories</h2>
+          <p class="section-desc">Little pieces of us, kept safe.</p>
+        </div>
+        <div id="memories-grid" class="memories-grid" role="list">
+          <!-- populated by JS -->
+        </div>
+      </section>
+
+      <!-- MUSIC VIEW -->
+      <section id="view-music" class="view" aria-label="Music" hidden>
+        <div class="section-header">
+          <h2 class="section-title">Something soft to listen to</h2>
+          <p class="section-desc">No pressure to press play. Just options when you want them.</p>
+        </div>
+        <div id="music-list" class="music-list" role="list">
+          <!-- populated by JS -->
+        </div>
+      </section>
+
+      <!-- SETTINGS VIEW -->
+      <section id="view-settings" class="view" aria-label="Settings" hidden>
+        <div class="section-header">
+          <h2 class="section-title">Settings</h2>
+          <p class="section-desc">Make this space feel a little more like yours.</p>
+        </div>
+        <div class="settings-group">
+          <h3 class="settings-label">Appearance</h3>
+          <div class="theme-toggle-row">
+            <button class="theme-btn active" id="theme-light" data-theme="light" aria-pressed="true">Light</button>
+            <button class="theme-btn" id="theme-dark" data-theme="dark" aria-pressed="false">Dark</button>
+          </div>
+        </div>
+        <div class="settings-group">
+          <h3 class="settings-label">Data</h3>
+          <p class="settings-note">Everything is stored only on this device. Nothing is sent anywhere.</p>
+          <div class="settings-actions">
+            <button class="btn btn-ghost" id="reset-favorites">Clear favorites</button>
+            <button class="btn btn-ghost" id="reset-journal">Clear journal</button>
+            <button class="btn btn-danger" id="reset-all">Clear all data</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Mobile bottom nav -->
+    <nav class="mobile-nav" aria-label="Mobile navigation">
+      <button class="mobile-nav-btn active" data-view="home" aria-label="Home">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>
+        <span>Home</span>
+      </button>
+      <button class="mobile-nav-btn" data-view="openWhen" aria-label="Open When">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+        <span>Letters</span>
+      </button>
+      <button class="mobile-nav-btn" data-view="journal" aria-label="Journal">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        <span>Journal</span>
+      </button>
+      <button class="mobile-nav-btn" data-view="favorites" aria-label="Favorites">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        <span>Saved</span>
+      </button>
+      <button class="mobile-nav-btn" data-view="settings" aria-label="Settings">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        <span>More</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- Modal: Open When letter -->
+  <div id="letter-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="letter-modal-title" hidden>
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-content letter-modal-content">
+      <button class="modal-close" data-close-modal aria-label="Close letter">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+      <div class="letter-paper">
+        <h3 id="letter-modal-title" class="letter-title"></h3>
+        <div id="letter-modal-body" class="letter-body"></div>
+        <div class="letter-actions">
+          <button class="btn btn-ghost btn-sm" id="letter-save-fav">Save to favorites</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Personal message -->
+  <div id="personal-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="personal-modal-title" hidden>
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-content personal-modal-content">
+      <button class="modal-close" data-close-modal aria-label="Close">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+      <h3 id="personal-modal-title" class="personal-title">Something I want you to remember</h3>
+      <p id="personal-modal-body" class="personal-body"></p>
+      <button class="btn btn-ghost btn-sm" id="personal-another">Show another</button>
+    </div>
+  </div>
+
+  <!-- Modal: Confirm -->
+  <div id="confirm-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="confirm-title" hidden>
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-content confirm-modal-content">
+      <h3 id="confirm-title" class="confirm-title">Are you sure?</h3>
+      <p id="confirm-message" class="confirm-message"></p>
+      <div class="confirm-actions">
+        <button class="btn btn-ghost" id="confirm-cancel" data-close-modal>Cancel</button>
+        <button class="btn btn-danger" id="confirm-ok">Yes, continue</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Journal entry detail / edit -->
+  <div id="entry-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="entry-modal-title" hidden>
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-content entry-modal-content">
+      <button class="modal-close" data-close-modal aria-label="Close">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+      <div id="entry-view-mode">
+        <p class="entry-date" id="entry-modal-date"></p>
+        <h3 id="entry-modal-title" class="entry-modal-title"></h3>
+        <div id="entry-modal-body" class="entry-modal-body"></div>
+        <div class="entry-actions">
+          <button class="btn btn-ghost btn-sm" id="entry-edit-btn">Edit</button>
+          <button class="btn btn-danger btn-sm" id="entry-delete-btn">Delete</button>
+        </div>
+      </div>
+      <div id="entry-edit-mode" hidden>
+        <label for="entry-edit-title" class="sr-only">Title</label>
+        <input type="text" id="entry-edit-title" class="journal-title-input" maxlength="120">
+        <label for="entry-edit-body" class="sr-only">Body</label>
+        <textarea id="entry-edit-body" class="journal-body-input" rows="10" maxlength="5000"></textarea>
+        <div class="entry-actions">
+          <button class="btn btn-ghost" id="entry-edit-cancel">Cancel</button>
+          <button class="btn btn-primary" id="entry-edit-save">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
