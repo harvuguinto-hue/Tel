@@ -17,7 +17,21 @@ const personalMessages = [
   "Slowly lang Tel, you are doing better than you think.",
   "Pray ka Tel! God is always with you.",
   "Wag mo kakalimutan Tel, you are loved and cherished.",
-  "MAGANDA KA Tel!",
+  "MAGANDA KA Tel PERIOD!",
+  "AMAZE. AMAZE. AMAZE!!",
+  "FIST MY BUMP!",
+  "Tiger, fix Tel, keep Tel happy.",
+  "TEL, SMILE KA DYAN!",
+   "No sad Tel allowed!",
+    "TEL, YOU ARE MORE THAN ENOUGH!",
+     "No overthinking allowed, Tel.",
+     "GO TEL GO!!",
+     "MOU APPROVES. TEL IS DOING GREAT.",
+     "ATTENTION EVERYONE: TEL IS AMAZING.",
+     "Tel, today’s goal: survive and be cute.",
+     "Tel, ikaw muna. You deserve it.",
+
+
 ];
 
 // ---------- Open When letters ----------
@@ -94,21 +108,21 @@ const musicItems = [
     title: "You got this",
     artist: "Artist or 'Various'",
     description: "Motivation?",
-    url: "https://open.spotify.com/playlist/5poMlw8CWfewsZdVhZzVQI?si=tM7u-yHTSeGZIGpjrk0htQ", // ← replace with real link
+    url: "https://open.spotify.com/track/5MDMFoTpN4ZIDUjNRt3AoN?si=281f74715aa24d16", // ← replace with real link
   },
   {
     id: "song-2",
     title: ":)",
     artist: "Artist",
     description: "For the nights that need something gentle.",
-    url: "https://open.spotify.com/playlist/6br7Vmmt4sZ76ZK3Z1EpbW?si=Nurn_qZBRhez5K5lU3Pt3w", // ← replace
+    url: "https://open.spotify.com/track/3NYgpHe5Lcz0LoXVeZwmRN?si=dac9b75699e24c3b", // ← replace
   },
   {
     id: "song-3",
     title: "Sing along",
     artist: "Artist",
     description: "When words feel like too much.",
-    url: "https://open.spotify.com/playlist/5EUYBpCwAAPIMQTePoxjSW?si=_oeO4DmZTkWhbY6G0EO70A", // ← replace
+    url: "https://open.spotify.com/track/4w1lzcaoZ1IC2K5TwjalRP?si=4ecb51d24387480c", // ← replace
   },
 ];
 
