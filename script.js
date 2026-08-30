@@ -120,6 +120,12 @@ const voicemailMessages = [
     date: "August 30, 2026",
     audio: "audio/2.mp3",
   },
+   {
+    id: "vm-002",
+    title: "Hindi ka namamansin!",
+    date: "August 30, 2026",
+    audio: "audio/3.mp3",
+  },
 
   // Add future messages like this:
   // {
@@ -1083,61 +1089,101 @@ function formatAudioTime(seconds) {
 function renderVoicemails() {
   const list = document.getElementById("voicemail-list");
   const heard = getHeardVoicemails();
-  const available = voicemailMessages.filter((message) => !heard.includes(message.id));
+
+  // Always show all voicemail messages.
+  const available = voicemailMessages;
 
   if (!available.length) {
     list.innerHTML = `
       <div class="empty-state voicemail-empty">
         <div class="voicemail-empty-icon" aria-hidden="true">♡</div>
-        <p>No new messages right now.</p>
+        <p>No messages right now.</p>
         <span>Maybe I'll leave you another one sometime.</span>
       </div>
     `;
     return;
   }
 
+  const newCount = available.filter(
+    (message) => !heard.includes(message.id)
+  ).length;
+
   list.innerHTML = `
-    <div class="voicemail-count">
-      ${available.length === 1 ? "1 NEW MESSAGE" : `${available.length} NEW MESSAGES`}
-    </div>
-    ${available.map((message) => `
-      <article class="voicemail-card" data-voicemail-id="${escapeHtml(message.id)}" role="listitem">
-        <div class="voicemail-card-top">
-          <div class="voicemail-avatar" aria-hidden="true">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M6 10.5a6 6 0 0 1 12 0v1.5a3 3 0 0 1-3 3h-1.5"/>
-              <path d="M6 10.5V12a3 3 0 0 0 3 3h1.5"/>
-              <path d="M4 11v1M20 11v1M9 19h6"/>
-            </svg>
-          </div>
-          <div class="voicemail-meta">
-            <div class="voicemail-new">NEW</div>
-            <h3 class="voicemail-title">${escapeHtml(message.title)}</h3>
-            <div class="voicemail-date">${escapeHtml(message.date)}</div>
-          </div>
-        </div>
+    ${newCount > 0 ? `
+      <div class="voicemail-count">
+        ${newCount === 1 ? "1 NEW MESSAGE" : `${newCount} NEW MESSAGES`}
+      </div>
+    ` : ""}
 
-        <audio class="voicemail-audio" preload="metadata" src="${escapeHtml(message.audio)}"></audio>
+    ${available.map((message) => {
+      const isNew = !heard.includes(message.id);
 
-        <div class="voicemail-player">
-          <button class="voicemail-play" type="button" aria-label="Play voicemail">
-            <svg class="play-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M8 5.5v13L18.5 12 8 5.5z"/>
-            </svg>
-            <svg class="pause-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M7 5h3v14H7zM14 5h3v14h-3z"/>
-            </svg>
-          </button>
-          <div class="voicemail-track-wrap">
-            <input class="voicemail-progress" type="range" min="0" max="100" value="0" step="0.1" aria-label="Voicemail progress">
-            <div class="voicemail-times">
-              <span class="voicemail-current">0:00</span>
-              <span class="voicemail-duration">0:00</span>
+      return `
+        <article class="voicemail-card ${isNew ? "is-new" : "is-heard"}"
+          data-voicemail-id="${escapeHtml(message.id)}"
+          role="listitem">
+
+          <div class="voicemail-card-top">
+            <div class="voicemail-avatar" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.5">
+                <path d="M6 10.5a6 6 0 0 1 12 0v1.5a3 3 0 0 1-3 3h-1.5"/>
+                <path d="M6 10.5V12a3 3 0 0 0 3 3h1.5"/>
+                <path d="M4 11v1M20 11v1M9 19h6"/>
+              </svg>
+            </div>
+
+            <div class="voicemail-meta">
+              ${isNew ? `<div class="voicemail-new">NEW</div>` : ""}
+              <h3 class="voicemail-title">${escapeHtml(message.title)}</h3>
+              <div class="voicemail-date">${escapeHtml(message.date)}</div>
             </div>
           </div>
-        </div>
-      </article>
-    `).join("")}
+
+          <audio
+            class="voicemail-audio"
+            preload="metadata"
+            src="${escapeHtml(message.audio)}">
+          </audio>
+
+          <div class="voicemail-player">
+            <button
+              class="voicemail-play"
+              type="button"
+              aria-label="Play voicemail">
+
+              <svg class="play-icon" width="18" height="18"
+                viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M8 5.5v13L18.5 12 8 5.5z"/>
+              </svg>
+
+              <svg class="pause-icon" width="18" height="18"
+                viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M7 5h3v14H7zM14 5h3v14h-3z"/>
+              </svg>
+
+            </button>
+
+            <div class="voicemail-track-wrap">
+              <input
+                class="voicemail-progress"
+                type="range"
+                min="0"
+                max="100"
+                value="0"
+                step="0.1"
+                aria-label="Voicemail progress">
+
+              <div class="voicemail-times">
+                <span class="voicemail-current">0:00</span>
+                <span class="voicemail-duration">0:00</span>
+              </div>
+            </div>
+          </div>
+
+        </article>
+      `;
+    }).join("")}
   `;
 
   list.querySelectorAll(".voicemail-card").forEach((card) => {
@@ -1161,38 +1207,51 @@ function renderVoicemails() {
       });
 
       if (audio.paused) {
-        audio.play().catch(() => showToast("Could not play this message."));
+        audio.play().catch(() => {
+          showToast("Could not play this message.");
+        });
       } else {
         audio.pause();
       }
     });
 
-    audio.addEventListener("play", () => card.classList.add("is-playing"));
-    audio.addEventListener("pause", () => card.classList.remove("is-playing"));
+    audio.addEventListener("play", () => {
+      card.classList.add("is-playing");
+    });
+
+    audio.addEventListener("pause", () => {
+      card.classList.remove("is-playing");
+    });
 
     audio.addEventListener("timeupdate", () => {
       if (audio.duration) {
         progress.value = (audio.currentTime / audio.duration) * 100;
       }
+
       current.textContent = formatAudioTime(audio.currentTime);
     });
 
     progress.addEventListener("input", () => {
       if (audio.duration) {
-        audio.currentTime = (Number(progress.value) / 100) * audio.duration;
+        audio.currentTime =
+          (Number(progress.value) / 100) * audio.duration;
       }
     });
 
-    // The message is considered "heard" only after the recording finishes.
+    // When the recording finishes, keep the voicemail.
+    // Only remove the NEW indicator.
     audio.addEventListener("ended", () => {
       const updated = [...new Set([...getHeardVoicemails(), id])];
       saveHeardVoicemails(updated);
-      card.classList.add("is-disappearing");
 
-      setTimeout(() => {
-        renderVoicemails();
-        showToast("Message saved to your heart ♥");
-      }, 360);
+      const newBadge = card.querySelector(".voicemail-new");
+
+      if (newBadge) {
+        newBadge.remove();
+      }
+
+      card.classList.remove("is-new");
+      card.classList.add("is-heard");
     });
   });
 }
