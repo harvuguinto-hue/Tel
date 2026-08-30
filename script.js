@@ -11,6 +11,75 @@ const CONFIG = {
   customGreeting: "Hello, Tel",
 };
 
+// ==============================
+// SPECIAL DATE MESSAGES
+// ==============================
+
+const specialDates = {
+  "01-01": {
+    loading: "Happy New Year, Tel ♡",
+    greeting: "Happy New Year, Tel!",
+  },
+
+  "02-14": {
+    loading: "Happy Valentine's Day, Tel ♡",
+    greeting: "Happy Valentine's Day, Tel!",
+  },
+
+  "09-22": {
+    loading: "Happy Birthday, Tel ♡",
+    greeting: "Happy Birthday, Tel!",
+  },
+
+  "12-25": {
+    loading: "Merry Christmas, Tel ♡",
+    greeting: "Merry Christmas, Tel!",
+  },
+};
+
+
+function getTodaySpecialDate() {
+  const specialDates = {
+  "01-01": {
+    loading: "Happy New Year, Tel ♡",
+    greeting: "Happy New Year, Tel!",
+  },
+
+  "02-14": {
+    loading: "Happy Valentine's Day, Tel ♡",
+    greeting: "Happy Valentine's Day, Tel!",
+  },
+
+  "09-22": {
+    loading: "Happy Birthday, Tel ♡",
+    greeting: "Happy Birthday, Tel!",
+  },
+
+  "12-25": {
+    loading: "Merry Christmas, Tel ♡",
+    greeting: "Merry Christmas, Tel!",
+  },
+};
+
+
+function getTodaySpecialDate() {
+  const today = new Date();
+
+  const month = String(
+    today.getMonth() + 1
+  ).padStart(2, "0");
+
+  const day = String(
+    today.getDate()
+  ).padStart(2, "0");
+
+  return (
+    specialDates[`${month}-${day}`] ||
+    null
+  );
+}
+}
+
 // ---------- Personal messages ("Something I want you to remember") ----------
 // Replace these with your own words. They rotate randomly.
 const personalMessages = [
@@ -71,7 +140,7 @@ const openWhenLetters = [
   {
     id: "ow-laugh",
     title: "you need to laugh",
-    message: "sige eto.\n\nNa alala mo pa yung day na nakalimutan mo name ko? isipin mo! HAHAHHAHAHAAHAHAHA smile kana!!.",
+    message: "sige eto.\n\nRemember that time you forgot my name? Don’t worry, I still remember:) HAHAHAHAHA smile kana!!.",
   },
   {
     id: "ow-angry",
@@ -1386,14 +1455,28 @@ function bindEvents() {
 // INIT
 // ==============================
 function init() {
+
   setTheme(getTheme());
+
   renderMoodGrid();
+
   bindEvents();
+
   updateCharCount();
 
   // Greeting
-  if (CONFIG.customGreeting) {
-    document.getElementById("greeting-text").textContent = CONFIG.customGreeting;
+  const specialDate = getTodaySpecialDate();
+
+  if (specialDate) {
+
+    document.getElementById("greeting-text").textContent =
+      specialDate.greeting;
+
+  } else if (CONFIG.customGreeting) {
+
+    document.getElementById("greeting-text").textContent =
+      CONFIG.customGreeting;
+
   }
 }
 
