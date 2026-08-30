@@ -110,13 +110,13 @@ const openWhenLetters = [
 const voicemailMessages = [
   {
     id: "vm-001",
-    title: "Hey, Tel...",
+    title: "Hello Tel!!!",
     date: "August 30, 2026",
     audio: "audio/1.mp3",
   },
   {
     id: "vm-002",
-    title: "Hey, Tel...",
+    title: "Hi! Ingat!!",
     date: "August 30, 2026",
     audio: "audio/2.mp3",
   },
