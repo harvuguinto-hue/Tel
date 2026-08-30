@@ -102,6 +102,34 @@ const openWhenLetters = [
 
 // ---------- Music / calming links ----------
 // Add Spotify, YouTube, or any playlist/song links.
+
+// ---------- Personal comfort voicemails ----------
+// Add your recordings here whenever you feel the time is right.
+// Put the audio files in an "audio" folder in the project.
+// A voicemail disappears from Tel's inbox after the recording finishes.
+const voicemailMessages = [
+  {
+    id: "vm-001",
+    title: "Hey, Tel...",
+    date: "August 30, 2026",
+    audio: "audio/1.mp3",
+  },
+  {
+    id: "vm-002",
+    title: "Hey, Tel...",
+    date: "August 30, 2026",
+    audio: "audio/2.mp3",
+  },
+
+  // Add future messages like this:
+  // {
+  //   id: "vm-002",
+  //   title: "Take a little breath",
+  //   date: "September 5, 2026",
+  //   audio: "audio/take-a-breath.mp3",
+  // },
+];
+
 const musicItems = [
   {
     id: "song-1",
@@ -360,6 +388,7 @@ const STORAGE_KEYS = {
   journal: "forYou_journal",
   favorites: "forYou_favorites",
   theme: "forYou_theme",
+  voicemailHeard: "forYou_voicemail_heard",
 };
 
 function loadJSON(key, fallback) {
@@ -397,6 +426,14 @@ function saveFavorites(favs) {
 
 function getTheme() {
   return localStorage.getItem(STORAGE_KEYS.theme) || "light";
+}
+
+function getHeardVoicemails() {
+  return loadJSON(STORAGE_KEYS.voicemailHeard, []);
+}
+
+function saveHeardVoicemails(ids) {
+  saveJSON(STORAGE_KEYS.voicemailHeard, ids);
 }
 
 function setTheme(theme) {
@@ -514,6 +551,7 @@ function navigateTo(viewId) {
   if (viewId === "openWhen") renderOpenWhen();
   if (viewId === "memories") renderMemories();
   if (viewId === "music") renderMusic();
+  if (viewId === "voicemail") renderVoicemails();
   if (viewId === "home") {
     // reset comfort flow if returning home
     state.currentMood = null;
@@ -1031,6 +1069,134 @@ function renderMusic() {
     .join("");
 }
 
+
+// ==============================
+// VOICEMAIL
+// ==============================
+function formatAudioTime(seconds) {
+  if (!Number.isFinite(seconds)) return "0:00";
+  const mins = Math.floor(seconds / 60);
+  const secs = Math.floor(seconds % 60).toString().padStart(2, "0");
+  return `${mins}:${secs}`;
+}
+
+function renderVoicemails() {
+  const list = document.getElementById("voicemail-list");
+  const heard = getHeardVoicemails();
+  const available = voicemailMessages.filter((message) => !heard.includes(message.id));
+
+  if (!available.length) {
+    list.innerHTML = `
+      <div class="empty-state voicemail-empty">
+        <div class="voicemail-empty-icon" aria-hidden="true">♡</div>
+        <p>No new messages right now.</p>
+        <span>Maybe I'll leave you another one sometime.</span>
+      </div>
+    `;
+    return;
+  }
+
+  list.innerHTML = `
+    <div class="voicemail-count">
+      ${available.length === 1 ? "1 NEW MESSAGE" : `${available.length} NEW MESSAGES`}
+    </div>
+    ${available.map((message) => `
+      <article class="voicemail-card" data-voicemail-id="${escapeHtml(message.id)}" role="listitem">
+        <div class="voicemail-card-top">
+          <div class="voicemail-avatar" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M6 10.5a6 6 0 0 1 12 0v1.5a3 3 0 0 1-3 3h-1.5"/>
+              <path d="M6 10.5V12a3 3 0 0 0 3 3h1.5"/>
+              <path d="M4 11v1M20 11v1M9 19h6"/>
+            </svg>
+          </div>
+          <div class="voicemail-meta">
+            <div class="voicemail-new">NEW</div>
+            <h3 class="voicemail-title">${escapeHtml(message.title)}</h3>
+            <div class="voicemail-date">${escapeHtml(message.date)}</div>
+          </div>
+        </div>
+
+        <audio class="voicemail-audio" preload="metadata" src="${escapeHtml(message.audio)}"></audio>
+
+        <div class="voicemail-player">
+          <button class="voicemail-play" type="button" aria-label="Play voicemail">
+            <svg class="play-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M8 5.5v13L18.5 12 8 5.5z"/>
+            </svg>
+            <svg class="pause-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M7 5h3v14H7zM14 5h3v14h-3z"/>
+            </svg>
+          </button>
+          <div class="voicemail-track-wrap">
+            <input class="voicemail-progress" type="range" min="0" max="100" value="0" step="0.1" aria-label="Voicemail progress">
+            <div class="voicemail-times">
+              <span class="voicemail-current">0:00</span>
+              <span class="voicemail-duration">0:00</span>
+            </div>
+          </div>
+        </div>
+      </article>
+    `).join("")}
+  `;
+
+  list.querySelectorAll(".voicemail-card").forEach((card) => {
+    const audio = card.querySelector(".voicemail-audio");
+    const play = card.querySelector(".voicemail-play");
+    const progress = card.querySelector(".voicemail-progress");
+    const current = card.querySelector(".voicemail-current");
+    const duration = card.querySelector(".voicemail-duration");
+    const id = card.dataset.voicemailId;
+
+    audio.addEventListener("loadedmetadata", () => {
+      duration.textContent = formatAudioTime(audio.duration);
+    });
+
+    play.addEventListener("click", () => {
+      list.querySelectorAll(".voicemail-audio").forEach((otherAudio) => {
+        if (otherAudio !== audio) {
+          otherAudio.pause();
+          otherAudio.closest(".voicemail-card")?.classList.remove("is-playing");
+        }
+      });
+
+      if (audio.paused) {
+        audio.play().catch(() => showToast("Could not play this message."));
+      } else {
+        audio.pause();
+      }
+    });
+
+    audio.addEventListener("play", () => card.classList.add("is-playing"));
+    audio.addEventListener("pause", () => card.classList.remove("is-playing"));
+
+    audio.addEventListener("timeupdate", () => {
+      if (audio.duration) {
+        progress.value = (audio.currentTime / audio.duration) * 100;
+      }
+      current.textContent = formatAudioTime(audio.currentTime);
+    });
+
+    progress.addEventListener("input", () => {
+      if (audio.duration) {
+        audio.currentTime = (Number(progress.value) / 100) * audio.duration;
+      }
+    });
+
+    // The message is considered "heard" only after the recording finishes.
+    audio.addEventListener("ended", () => {
+      const updated = [...new Set([...getHeardVoicemails(), id])];
+      saveHeardVoicemails(updated);
+      card.classList.add("is-disappearing");
+
+      setTimeout(() => {
+        renderVoicemails();
+        showToast("Message saved to your heart ♥");
+      }, 360);
+    });
+  });
+}
+
 // ==============================
 // PERSONAL MESSAGE
 // ==============================
@@ -1122,10 +1288,11 @@ function bindEvents() {
   });
 
   document.getElementById("reset-all").addEventListener("click", () => {
-    confirmAction("Clear all data?", "Journal, favorites, and theme preference will be removed.", () => {
+    confirmAction("Clear all data?", "Journal, favorites, theme preference, and heard voicemail history will be removed.", () => {
       localStorage.removeItem(STORAGE_KEYS.journal);
       localStorage.removeItem(STORAGE_KEYS.favorites);
       localStorage.removeItem(STORAGE_KEYS.theme);
+      localStorage.removeItem(STORAGE_KEYS.voicemailHeard);
       setTheme("light");
       closeModal("confirm-modal");
       showToast("All data cleared");
