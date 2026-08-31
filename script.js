@@ -113,6 +113,11 @@ const openWhenLetters = [
     message: "Hello, Baket naman sad ka? :(\n\n It's okay Tel!, whatever it is alam ko na kayang kaya mo yan. Smile kana PLEASE MASTER! :))",
   },
   {
+    id: "ow-Hi",
+    title: "Hi TEL!",
+    message: "Hello, Okay ka lang ba? :(\nI hope okay ka lang.\nTel siguro may mga araw, na takot ka na dumating\n Baka bigla kang magduda at isipin mo kung kaya mo ba talaga.\n Kapag dumating yung araw na yon Tel please alalahanin mo to \nPHILIPPPIANS 4:13,\n-I can do all things through Christ who strengthens me.\n Lapit ka lang kay God and let him give you the strength to get through that day.\n Take it one step at a time Tel, wag kang magmadali\nIm sure God will give you enough strength fot those days na natatakot ka.\nYou don't have to go through it alone.\n Smile Tel! 🤍\n -HUG",
+  },
+  {
     id: "ow-terrible",
     title: "you're having a terrible day",
     message: "Aww bad day?\n\nHmm let's make it better together with God. Pray ka Tel! :))",
