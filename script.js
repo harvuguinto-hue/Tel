@@ -125,7 +125,7 @@ const openWhenLetters = [
   {
     id: "ow-sleep",
     title: "you can't sleep",
-    message: "Dika na naman maka tulog.\n\nAno man yan Tel, Im sure na need mo lang mag pause muna and Pray, Wag mo masyado isipin ha sleep kanaaa. Goodnight Sleepwell Tel! :))",
+    message: "Bakit hindi kana naman makatulog?\n\nAno nasa isip mo? Nag PRAY kanaba? Chat ka langggg ha if hindi kaya.. \npagusapan naten at baka makatulong na gumaan yung nararamdaman mo.. \nyung mga worries mo ipag pabukas mo na... \nKailangan mo din mag rest Tel! Goodnight and Sleepwell!! :))",
   },
   {
     id: "ow-doubt",
@@ -135,12 +135,12 @@ const openWhenLetters = [
   {
     id: "ow-encourage",
     title: "you need encouragement",
-    message: "Hmmm KAYA MO YANNNN.\n\nano man yan sigurado ako na kayang kaya mo yan.",
+  message: "Hmmm KAYA MO YANNNN.\n\nano man yan sigurado ako na kayang kaya mo yan.\n GO GO GO TEL! :)) WOOOOO!!!!! \n ",
   },
   {
     id: "ow-laugh",
     title: "you need to laugh",
-    message: "sige eto.\n\nRemember that time you forgot my name? Don’t worry, I still remember:) HAHAHAHAHA smile kana!!.",
+    message: "sige eto.\n\nRemember that time you forgot my name? Don’t worry, I still remember:) HAHAHAHAHA smile kana!!. \n Imagine mo nakasalubong moko sa daan tapos bigla ko ginawa yung \n mukbang with tirik na mata. \nHAHAHHAHAHAHAHHAHAH!",
   },
   {
     id: "ow-angry",
