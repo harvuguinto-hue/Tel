@@ -42,22 +42,22 @@ function getTodaySpecialDate() {
   const specialDates = {
   "01-01": {
     loading: "Happy New Year, Tel ♡",
-    greeting: "Happy New Year, Tel!",
+    greeting: "Happy New Year, Tel! :))))",
   },
 
   "02-14": {
     loading: "Happy Valentine's Day, Tel ♡",
-    greeting: "Happy Valentine's Day, Tel!",
+    greeting: "Happy Valentine's Day, Tel! <3333",
   },
 
   "09-22": {
     loading: "Happy Birthday, Tel ♡",
-    greeting: "Happy Birthday, Tel!",
+    greeting: "Happy Birthday, Tel! Ienjoy mo yung day mo wag ka mag pa stress ng sobra. And sana lagi mong tatandaan na ikaw ay mahalaga. Araw mo to so wag mong sayangin. Smile kana pleaseee :)) Happy Birthday Tel!! Ingat ka paagi!!!",
   },
 
   "12-25": {
     loading: "Merry Christmas, Tel ♡",
-    greeting: "Merry Christmas, Tel!",
+    greeting: "Merry Christmas, Tel! :)",
   },
 };
 
