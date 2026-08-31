@@ -52,7 +52,7 @@ function getTodaySpecialDate() {
 
   "09-22": {
     loading: "Happy Birthday, Tel ♡",
-    greeting: "Happy Birthday, Tel! Ienjoy mo yung day mo wag ka mag pa stress ng sobra. And sana lagi mong tatandaan na ikaw ay mahalaga. Araw mo to so wag mong sayangin. Smile kana pleaseee :)) Happy Birthday Tel!! Ingat ka paagi!!!",
+    greeting: "Hmmm Tel, eto yung first birthday mo na wala siya. First Christmas, first New Year, \n even Valentine’s Day. Hindi ko alam paano ko sisimulan kasi feeling ko sobrang bigat nito sa pakiramdam.\n Pero I think kaya mo to ihandle. Be brave, Tel! 🤍Siguro eto na yung start ng next chapter ng buhay mo. Makakapagsimula ka ulit, slowly, at sarili mong pace. \nSana maenjoy mo pa rin yung mga occasions na darating. Hindi naman kailangan na perfect yung araw, na dapat okay ka palagi sa mga araw na ’yon. \nKailangan mo lang i-enjoy kung anong meron, kahit pauntiunti, at salubungin mo lahat ng yan with a smile. 😊\nAnd with your friends and God, sobrang lakas ng backup mo hehe. Kaya wag kang matakot, ha? \nMarami pang magagandang bagay na darating sa buhay mo. And when that time comes, when those good things finally find you...\nDESERVE MO. HAPPY HAPPY BIRTHDAY TEL!🤍",
   },
 
   "12-25": {
