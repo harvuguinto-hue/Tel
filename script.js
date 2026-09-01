@@ -181,25 +181,8 @@ const openWhenLetters = [
 // Add your recordings here whenever you feel the time is right.
 // Put the audio files in an "audio" folder in the project.
 // A voicemail disappears from Tel's inbox after the recording finishes.
-const voicemailMessages = [
-  {
-    id: "vm-001",
-    title: "Hello Tel!!!",
-    date: "August 30, 2026",
-    audio: "audio/1.mp3",
-  },
-  {
-    id: "vm-002",
-    title: "Hi! Ingat!!",
-    date: "August 30, 2026",
-    audio: "audio/2.mp3",
-  },
-   {
-    id: "vm-003",
-    title: "Hindi ka namamansin!",
-    date: "August 30, 2026",
-    audio: "audio/3.mp3",
-  },
+//const voicemailMessages = [
+ 
 
   // Add future messages like this:
   // {
@@ -208,7 +191,7 @@ const voicemailMessages = [
   //   date: "September 5, 2026",
   //   audio: "audio/take-a-breath.mp3",
   // },
-];
+
 
 const musicItems = [
   {
@@ -1484,6 +1467,10 @@ function init() {
 
   }
 }
+const bouquetImages = Array.from(
+  { length: 120 },
+  (_, i) => `${i + 1}.png`
+);
 
 init();
 const startDate = new Date("2026-09-01");
@@ -1498,12 +1485,6 @@ const dayNumber = Math.floor(difference / (1000 * 60 * 60 * 24)) + 1;
 const bouquet = document.getElementById("dailyBouquet");
 const bouquetMessage = document.getElementById("dailyBouquetMessage");
 
-const bouquetImages = [
-  "1.png",
-  "2.png",
-  "3.jpg",
-  "4.png"
-];
 
 const messages = [
   "Flowers for you, Tel. Have a nice day. Smile ka na. 🤍",
