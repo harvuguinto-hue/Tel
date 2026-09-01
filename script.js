@@ -1486,3 +1486,152 @@ function init() {
 }
 
 init();
+const startDate = new Date("2026-09-01");
+const today = new Date();
+
+startDate.setHours(0, 0, 0, 0);
+today.setHours(0, 0, 0, 0);
+
+const difference = today - startDate;
+const dayNumber = Math.floor(difference / (1000 * 60 * 60 * 24)) + 1;
+
+const bouquet = document.getElementById("dailyBouquet");
+const bouquetMessage = document.getElementById("dailyBouquetMessage");
+
+const bouquetImages = [
+  "1.png",
+  "2.png",
+  "3.jpg",
+  "4.png"
+];
+
+const messages = [
+  "Flowers for you, Tel. Have a nice day. Smile ka na. 🤍",
+  "A little something for you today. 🌷",
+  "No special reason. I just wanted you to have flowers. 🌸",
+  "I hope today is a little kinder to you. 🤍",
+  "Good morning, Tel. Here's your tiny bouquet. 🌼",
+  "Whatever today brings, kaya mo yan Par!. 🫶🏻",
+  "Don't forget to smile today, kahit konti lang hehe. 🌷",
+  "Flowers muna bago stress. Priorities. 😂🌸",
+  "I hope something makes you genuinely happy today. 🤍",
+  "Just a little reminder to have a good day. 🌼",
+  "Take things one at a time today. 🌿",
+  "Here's something pretty for your day. 🌷",
+  "Sana may magandang mangyari sa'yo today. Kahit maliit lang. 🤍",
+  "You deserve a little softness today. 🌸",
+  "Smile ka na. Bawal masungit today. 😂🌼",
+  "Here's a little something to brighten your day. 🌷",
+  "I hope you get a good break today. You deserve one. 🤍",
+  "Just leaving these here for you. 🌸",
+  "Sana today feels lighter than yesterday. 🌿",
+  "Hi Tel, May flowers ka pa rin. 😂💐",
+  "Whatever you're doing today, don't forget to breathe. 🤍",
+  "Here's your tiny dose of something nice. 🌷",
+  "Sana may makapagpasmile sayo today. 🌸",
+  "Flowers for you because... why not? 🌼",
+  "Don't forget to take care of yourself today. 🫶🏻",
+  "I hope today gives you something worth smiling about. 🤍",
+  "A little bouquet for a hopefully not so stressful day. 😂🌷",
+  "Take care today, Tel. 🌸",
+  "I hope you're being gentle with yourself today. 🤍",
+  "Consistent no. 😂💐",
+  "May today bring you a little peace. 🌿",
+  "Here's something cheerful for you. 🌻",
+  "Sana today goes the way you need it to. 🤍",
+  "Eat properly today, please. This bouquet cannot feed you. 😂🌷",
+  "A little reminder that you're doing okay. 🫶🏻",
+  "Flowers muna. Problems later. 😂🌸",
+  "I hope today surprises you in a good way. 🌼",
+  "Sending a little sunshine your way. 🌻",
+  "Whatever kind of day this is, I hope you get through it okay. 🤍",
+  "Committed na talaga ako dito. 😂💐",
+  "Here's something pretty to start your day. 🌷",
+  "Sana nakapagpahinga ka kahit konti today. 🌿",
+  "You don't have to have everything figured out today. 🤍",
+  "Smile. Yes, ikaw. 😂🌸",
+  "Another day, another bouquet. 🌷",
+  "I hope you find a quiet moment for yourself today. 🤍",
+  "Sending you a little good energy today. 🌼",
+  "Sana walang masyadong stressful today. Please lang. 😂🌿",
+  "You deserve a good day too, you know. 🤍",
+  "May flowers ka pa din hehe. 😂💐",
+  "Here's your flowers. Now go have a nice day. 🌷",
+  "Sana may reason ka to smile today. 🌸",
+  "Rest when you need to.🤍",
+  "A little bouquet for your day. 🌼",
+  "Sana peaceful ang araw mo today. 🌿",
+  "Don't forget that you can slow down sometimes. 🫶🏻",
+  "Flowers for you, Tel. Thats all for today. 🌷",
+  "Sana masarap food mo today. Important yan. 😂🌸",
+  "One more day to make something good out of. 🤍",
+  "Hello!. 😂💐",
+  "Good things don't always have to be big. 🌼",
+  "I hope you laugh at something today. 🌷",
+  "Be proud of yourself for making it this far. 🤍",
+  "Here's a tiny pause from everything else. 🌿",
+  "Sana okay ka today. And if you're not, okay lang din. 🫶🏻",
+  "Flowers muna. You can deal with the rest later. 🌸",
+  "I hope today feels a little less heavy. 🤍",
+  "Smile kahit isang beses lang today. Okay? 😂🌷",
+  "Nice flowers for a hopefully nice day. 🌼",
+  "HAHAHAHAHHA FLOWERS PO!. 😂💐",
+  "Take a breath. You're allowed to have slow days. 🌿",
+  "Sana may maliit na bagay na magpasaya sa'yo today. 🌸",
+  "Here's something to brighten your screen for a second. 🌷",
+  "Don't be too hard on yourself today, okay? 🤍",
+  "Flowers hehe. 🌼",
+  "I hope today gives you more smiles than sighs. 😂🌸",
+  "Whatever happens today, take care of yourself. 🫶🏻",
+  "A little flower delivery, straight to your screen. 💐",
+  "Sana smooth sailing ang araw mo today. 🌿",
+  "Oh bulaklak PAR!. 😂🌷",
+  "Here's your daily dose of something pretty. 🌸",
+  "I hope you get enough rest today. 🤍",
+  "Sana may good news kang matanggap today. 🌼",
+  "No pressure today. Just do what you can. 🌿",
+  "Flowers for you. That's the whole message. 😂💐",
+  "I hope you enjoy the little things today. 🌷",
+  "You got this, Tel. One step at a time. 🫶🏻",
+  "Sana warm and easy ang araw mo today. 🌸",
+  "A tiny reminder that someone is wishing you a good day. 🤍",
+  "PAR DELIVERY!. 😂💐",
+  "Here's a little beauty for an ordinary day. 🌼",
+  "I hope you laugh at something unexpectedly today. 🌷",
+  "Take your time. There's no need to rush everything. 🌿",
+  "Sana gentle ang day mo today. 🤍",
+  "Don't forget your smile. 🌸",
+  "Another bouquet, another little reminder to enjoy today. 🌷",
+  "I hope something good finds you today. 🫶🏻",
+  "If today gets tiring, remember to rest. 🌼",
+  "One more day before the big one... 👀🌸",
+  "Ohhhhhh keka ya ini!. 😂💐",
+  "Still here. Still sending flowers. 🌷",
+  "Sana may something today that makes you say, \"Ay, nice.\" 😂🌼",
+  "Here's your little reminder to enjoy your day. 🤍",
+  "You deserve moments where you don't have to think about anything. 🌿",
+  "Flowers for you, Tel. No questions asked. 🌸",
+  "I hope today gives you a reason to smile without forcing it. 🫶🏻",
+  "Keep going. You're doing okay. 🌷",
+  "Sana may masarap na food waiting for you today. Priorities ulit. 😂🌼",
+  "A little something to make your screen prettier today. 🤍",
+  "One hundred ten bouquets. I'm impressed with myself. 😂💐",
+  "May today bring you a little peace. 🌿",
+  "Don't forget that rest is important too. 🌸",
+  "Here's your flowers. Now smile naman diyan. 😂🌷",
+  "I hope today feels lighter than you expected. 🤍",
+  "Whatever you're facing, one moment at a time. 🫶🏻",
+  "Another day, another little surprise waiting for you. 🌼",
+  "Sana happy ka today. That's the wish. 🌷",
+  "Almost at the end. But today still deserves flowers. 🌸",
+  "One more after this... but let's enjoy today's bouquet first. 🤍",
+  "I hope these little flowers made some of your days a little brighter. 🤍"
+];
+
+if (bouquet && bouquetMessage && dayNumber >= 1 && dayNumber <= bouquetImages.length) {
+  bouquet.src = `images/${bouquetImages[dayNumber - 1]}`;
+  bouquetMessage.textContent = messages[dayNumber - 1];
+}
+
+
+

@@ -1369,3 +1369,21 @@ main {
   border-color: var(--accent-soft);
   transform: translateY(-1px);
 }
+
+.daily-bouquet {
+    text-align: center;
+    margin: 15px auto;
+}
+
+.daily-bouquet img {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto 5px;
+}
+
+.daily-bouquet p {
+    margin: 0;
+    font-size: 14px;
+}
