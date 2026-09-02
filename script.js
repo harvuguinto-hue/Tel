@@ -1616,3 +1616,36 @@ if (bouquet && bouquetMessage && dayNumber >= 1 && dayNumber <= bouquetImages.le
 
 
 
+const bouquetElement = document.getElementById("bouquet");
+const petalContainer = document.getElementById("petalContainer");
+
+bouquetElement.addEventListener("click", () => {
+    bouquetElement.classList.remove("bouquet-bloom");
+    void bouquetElement.offsetWidth;
+    bouquetElement.classList.add("bouquet-bloom");
+
+    for (let i = 0; i < 12; i++) {
+        const petal = document.createElement("span");
+
+        petal.classList.add("falling-petal");
+
+        petal.style.setProperty(
+            "--x",
+            `${(Math.random() - 0.5) * 180}px`
+        );
+
+        petal.style.setProperty(
+            "--rotation",
+            `${Math.random() * 360}deg`
+        );
+
+        petal.style.animationDelay =
+            `${Math.random() * 0.25}s`;
+
+        petalContainer.appendChild(petal);
+
+        setTimeout(() => {
+            petal.remove();
+        }, 3000);
+    }
+});

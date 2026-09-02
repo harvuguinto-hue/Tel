@@ -1387,3 +1387,80 @@ main {
     margin: 0;
     font-size: 14px;
 }
+.bouquet-container {
+    position: relative;
+    width: fit-content;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+.bouquet-container img {
+    width: 110px;
+    transition: transform 0.3s ease;
+}
+
+.bouquet-bloom img {
+    animation: bouquetBloom 0.55s ease;
+}
+
+@keyframes bouquetBloom {
+    0% {
+        transform: scale(1);
+    }
+
+    35% {
+        transform: scale(1.05) translateY(-5px);
+    }
+
+    70% {
+        transform: scale(0.98) translateY(1px);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.petal-container {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: visible;
+}
+
+.falling-petal {
+    position: absolute;
+    left: 50%;
+    top: 30%;
+
+    width: 9px;
+    height: 13px;
+
+    background: #e8c7d5;
+    border-radius: 70% 30% 70% 30%;
+
+    animation: petalFloat 2.5s ease-out forwards;
+}
+
+@keyframes petalFloat {
+
+    0% {
+        opacity: 0;
+        transform:
+            translate(0, 0)
+            rotate(0deg)
+            scale(0.5);
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform:
+            translate(var(--x), 150px)
+            rotate(var(--rotation))
+            scale(0.9);
+    }
+}
