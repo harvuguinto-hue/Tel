@@ -1474,3 +1474,165 @@ main {
     -webkit-user-drag: none;
     outline: none;
 }
+
+
+.dakasi-memory {
+    display: flex;
+    justify-content: center;
+    margin: 18px auto 22px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin: 55px auto 22px;
+}
+
+.dakasi-cup-wrapper {
+    position: relative;
+    width: 145px;
+    cursor: pointer;
+
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+
+    transition: transform 0.3s ease;
+}
+
+.dakasi-cup {
+    display: block;
+    width: 100%;
+    height: auto;
+
+    pointer-events: none;
+    -webkit-user-drag: none;
+
+    filter: drop-shadow(0 5px 8px rgba(0, 0, 0, 0.08));
+
+    transition: transform 0.3s ease;
+}
+
+.dakasi-memory-text {
+    position: absolute;
+
+    top: 48%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: 85px;
+
+    text-align: center;
+
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    line-height: 1.35;
+
+    color: #5f4a43;
+
+    pointer-events: none;
+}
+
+.dakasi-memory-text span {
+    display: block;
+}
+
+/* Hover on desktop */
+.dakasi-cup-wrapper.dakasi-tapped {
+    animation: dakasiShake 0.6s ease;
+}
+
+@keyframes dakasiShake {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    15% {
+        transform: rotate(-5deg);
+    }
+
+    30% {
+        transform: rotate(5deg);
+    }
+
+    45% {
+        transform: rotate(-4deg);
+    }
+
+    60% {
+        transform: rotate(4deg);
+    }
+
+    75% {
+        transform: rotate(-2deg);
+    }
+
+    90% {
+        transform: rotate(2deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+/* Little tap animation */
+.dakasi-cup-wrapper.dakasi-tapped {
+    animation: dakasiTap 0.55s ease;
+}
+
+@keyframes dakasiTap {
+
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    30% {
+        transform: translateY(-7px) rotate(-2deg);
+    }
+
+    60% {
+        transform: translateY(-3px) rotate(2deg);
+    }
+
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+}
+
+.tap-me {
+    position: absolute;
+    top: -42px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    color: #8d6758;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+
+    pointer-events: none;
+
+    animation: tapMeBounce 1.2s ease-in-out infinite;
+}
+
+.tap-arrow {
+    font-size: 16px;
+    margin-top: 2px;
+}
+
+@keyframes tapMeBounce {
+    0%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+
+    50% {
+        transform: translateX(-50%) translateY(-7px);
+    }
+}
+
+#personal-msg-btn {
+    display: none;
+}

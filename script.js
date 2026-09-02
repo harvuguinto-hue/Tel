@@ -1649,3 +1649,24 @@ bouquetElement.addEventListener("click", () => {
         }, 3000);
     }
 });
+
+
+const dakasiMemory = document.getElementById("dakasiMemory");
+const dakasiCup = dakasiMemory.querySelector(".dakasi-cup-wrapper");
+const personalMsgBtn = document.getElementById("personal-msg-btn");
+
+dakasiCup.addEventListener("click", () => {
+
+    // Cup animation
+    dakasiCup.classList.remove("dakasi-tapped");
+
+    void dakasiCup.offsetWidth;
+
+    dakasiCup.classList.add("dakasi-tapped");
+
+    // Open the original personal message
+    setTimeout(() => {
+        personalMsgBtn.click();
+    }, 400);
+
+});
