@@ -1464,3 +1464,13 @@ main {
             scale(0.9);
     }
 }
+
+#dailyBouquet,
+.bouquet-container {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    outline: none;
+}
