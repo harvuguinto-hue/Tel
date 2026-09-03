@@ -167,6 +167,13 @@ const openWhenLetters = [
     id: "ow-proud",
     title: "you're proud of yourself",
     message: "AWWW.\n\nDESERVE MO YAN TEL! :))",
+    
+  },
+
+  {
+    id: "ow-Msg",
+    title: "Message for Tel",
+    message: "Hi TEl!\n\nMay napansin lang ako na parang lumalayo or umiiwas ka\n nahihiya ako na itanong pero yun yung napansin ko\nbaka kailangan mo ng space or something\n Okay lang sakin yon!\nAndito lang naman ako if ever gusto mong kausap or need mo ng help\n Dikita ma chat e so dito nalang hehe\n Di ko rin alam if binubuksan mo pa ba to\n so sana kung nababasa mo man to ngayon\n lagi kang magiingat\n wag mo papabyaan sarili mo!\stay safe Tel!\n-Hug",
   },
 ];
 
