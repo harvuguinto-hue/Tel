@@ -102,7 +102,19 @@ const personalMessages = [
 
 
 ];
+function getOpenWhenMessage(item) {
+    const messages = item.messages || [item.message];
 
+    const storageKey = `openWhen_${item.id}`;
+
+    let index = parseInt(localStorage.getItem(storageKey) || "0");
+
+    const message = messages[index % messages.length];
+
+    localStorage.setItem(storageKey, index + 1);
+
+    return message;
+}
 // ---------- Open When letters ----------
 // Replace the message fields with your personal letters.
 // Keep the titles or change them to fit.
@@ -110,70 +122,477 @@ const openWhenLetters = [
   {
     id: "ow-sad",
     title: "you're sad",
-    message: "Hello, Baket naman sad ka? :(\n\n It's okay Tel!, whatever it is alam ko na kayang kaya mo yan. Smile kana PLEASE MASTER! :))",
+
+    messages: ["Hello, Baket naman sad ka? :(\n\nIt's okay Tel!, whatever it is alam ko na kayang kaya mo yan. Smile kana PLEASE MASTER! :))",
+
+    "Sad kana naman?\n\nAno nangyare?\n\nmay na alala ka?\n\n Tel alam mo may mga bagay na pag na aalala mo masakit pero hindi naman siguro ibig sabihin non hindi kana pwede mag smile\n\nKaya mo yan Tel! Pray ka palagi",
+
+    "Tel,\n\nI hope you know that being sad doesn't make you weak.\n\nMinsan napapagod lang talaga tayo. Minsan may mga bagay na hindi natin kayang kontrolin. At minsan kailangan lang talaga nating umiyak nang kaunti.\n\nSo if you need to cry, go cry.\n\nTapos after that, wipe those tears and remember na nandito ka pa rin. And that's already something. 🤍",
+
+    "Tel,\n\nIf you opened this again, maybe you needed another reminder.\n\nYou're doing okay.\n\nMaybe not perfectly. Maybe not the way you wanted. But you're still trying, and that's enough for today.\n\nSo don't be too hard on yourself, okay?\n\nRest if you need to. Cry if you need to. Start again when you're ready.\n\nAnd if nobody has told you today...\n\nI'm proud of you, Tel. ❤️",
+
+    "Tel,\n\nHindi ko man alam kung ano yung pinagdadaanan mo ngayon, I hope this little message reminds you of one thing:\n\nHindi ka nagiisa.\n\nMaraming taon ang nagmamahal sayo. Maraming taong gusto kang makita na okay ulit.\n\nKasama ako doon.\n\nKaya pahinga ka lang muna, Master. Hindi mo kailangang dalhin lahat mag-isa. 🫂",
+
+    "Tel,\n\nMaybe today just isn't your day.\n\nAnd that's okay.\n\nHindi ibig sabihin na dahil pangit yung araw nato, pangit na rin ang lahat.\n\nOne bad day doesn't define you. One painful moment doesn't define your whole life.\n\nDarating din yung araw na mapapangiti ka ulit nang hindi mo pinipilit.\n\nHintayin lang natin. 🤍",
+
+    ]
   },
   {
     id: "ow-Hi",
     title: "Hi TEL!",
-    message: "Hello, Okay ka lang ba? :(\nI hope okay ka lang.\nTel siguro may mga araw, na takot ka na dumating\n Baka bigla kang magduda at isipin mo kung kaya mo ba talaga.\n Kapag dumating yung araw na yon Tel please alalahanin mo to \nPHILIPPPIANS 4:13,\n-I can do all things through Christ who strengthens me.\n Lapit ka lang kay God and let him give you the strength to get through that day.\n Take it one step at a time Tel, wag kang magmadali\nIm sure God will give you enough strength fot those days na natatakot ka.\nYou don't have to go through it alone.\n Smile Tel! 🤍\n -HUG",
+    messages: "Hello, Okay ka lang ba? :(\nI hope okay ka lang.\nTel siguro may mga araw, na takot ka na dumating\n Baka bigla kang magduda at isipin mo kung kaya mo ba talaga.\n Kapag dumating yung araw na yon Tel please alalahanin mo to \nPHILIPPPIANS 4:13,\n-I can do all things through Christ who strengthens me.\n Lapit ka lang kay God and let him give you the strength to get through that day.\n Take it one step at a time Tel, wag kang magmadali\nIm sure God will give you enough strength fot those days na natatakot ka.\nYou don't have to go through it alone.\n Smile Tel! 🤍",
   },
   {
     id: "ow-terrible",
     title: "you're having a terrible day",
-    message: "Aww bad day?\n\nHmm let's make it better together with God. Pray ka Tel! :))",
+    messages:[ "Aww bad day?\n\nHmm let's make it better together with God. Pray ka Tel! :))",
+
+      "Awww, terrible day?\n\nCome here muna, Tel.\n\n🫂Hindi ko alam kung ano yung nangyari today, pero whatever it was, tapos na yung araw na yon.Pahinga ka muna, okay?\n\nKain ka, inom tubig, then breathe.Tomorrow is another chance. 🤍",
+
+      
+      "Tel,So... today decided to be a terrible day, no? 😭\n\nIt's okie. Hindi naman lahat ng araw magiging maganda.\n\nKung marami kang ginawa today and nothing seemed to go right,\n\n please dont think na wala kang nagawa.\n\nYou still made it through the day.And honestly, that is enough for tonight.\n\nRest ka muna, Tel. Bukas na natin problemahin yung bukas. 🫂`",
+      
+      "Okay Tel,  Before anything else...\n\n Breathe in. 🌬️ \n\n Breathe out.\n\n  Again. \n\n\n GOOD. \n\n Now drink some water.😤  \n\nWhatever happened today, hindi mo na mababago yung nangyari.\n\n  Pero pwede mong piliin na alagaan muna sarili mo pagkatapos nito.\n\n So tonight, pahinga muna.\n\n  The world can wait until tomorrow. 🫂",
+
+
+
+
+    ]
   },
   {
     id: "ow-alone",
     title: "you're feeling alone",
-    message: "Kamusta ka naman?.\n\nAlam mo naman na isang message mo lang kay Gar mag rereply sha sayo if gusto mo ng kausap wag ka mag dalawang isip na magreach out! Sabihin mo lang Hello, HAHAHAHAHA! smileee kanaaa :)).",
-  },
+    messages: ["Kamusta ka naman?.\n\nAlam mo naman na isang message mo lang kay Gar mag rereply sha sayo if gusto mo ng kausap wag ka mag dalawang isip na magreach out! Sabihin mo lang Hello, HAHAHAHAHA! smileee kanaaa :)).",
+    
+
+      "Just reach out, okie? 🤍",
+
+      "Hoy Master,\n\nLonely era na naman ba? 😭\n\nSige lang, I'll allow it.\n\nPero don't stay there too long ha. 😤\n\nMessage someone.\n\n  Talk to your friends.  Go outside.\n\n  Or kahit humiga ka lang muna and listen to your favorite music.\n\n  You don't have to fight the feeling alone.\n\nAndito lang ako.",
+    "Tel,  You dont always have to be surrounded by people to be okay.\n\n  Sometimes you just need a little quiet.\n\n So if you want to be alone for a while, thats okay.\n\n  Just remember the difference between choosing some quiet time and thinking that nobody cares about you.\n\nBecause people do.:)) ",
+    
+    ]
+    },
   {
-    id: "ow-sleep",
-    title: "you can't sleep",
-    message: "Bakit hindi kana naman makatulog?\n\nAno nasa isip mo? Nag PRAY kanaba? Chat ka langggg ha if hindi kaya.. \npagusapan naten at baka makatulong na gumaan yung nararamdaman mo.. \nyung mga worries mo ipag pabukas mo na... \nKailangan mo din mag rest Tel! Goodnight and Sleepwell!! :))",
-  },
+  id: "ow-sleep",
+  title: "you can't sleep",
+
+  messages: [
+
+    // MESSAGE 1
+    `Tel,
+
+Bakit hindi ka na naman makatulog? 😭
+
+Ano na namang tumatakbo sa utak mo?
+
+For tonight, try to let it rest muna.
+
+Whatever youre worrying about can wait until tomorrow.
+
+Close your eyes, breathe slowly, and let yourself rest.
+
+Goodnight, Tel! Sleep tight!. 💤🤍`,
+
+    // MESSAGE 2
+    `Tel,
+
+If your mind is being noisy tonight...
+
+You dont have to solve everything right now.
+
+Tomorrow is still going to come.
+
+So for now, just lie down.
+
+Breathe in.
+
+Breathe out.
+
+And remind yourself:
+
+"Pwede ko naman isipin to bukas."
+
+Sleepwell, Tel. 🌙`,
+
+    // MESSAGE 3
+    `Hoy Tel,
+
+CHECK YOUR CLOCK. 😭
+
+Why are you still awake?!
+
+HAHAHAHAHAHA.
+
+Pero seriously, kailangan mo rin magrest.
+
+Hindi pwedeng puro trabaho, isip, at overthink.
+
+Your body needs a break too.
+
+So put that phone down after reading this. 😤
+
+tama na ang TIKTOK!
+
+Goodnighttt. 💤`,
+
+    // MESSAGE 4
+    `Tel,
+
+Maybe youre thinking about something that happened today.
+
+Maybe youre worried about tomorrow.
+
+Maybe theres just too much going through your head.
+
+Whatever it is, you dont have to figure it out tonight.
+
+Sometimes the best thing you can do is rest and come back to the problem with a clearer mind.
+
+So let tomorrow handle tomorrow.
+
+Goodnight, Tel. 🤍`,
+
+    // MESSAGE 5
+    `If youre still awake...
+
+Heres your official permission to stop thinking for tonight. 😤
+
+You did enough today.
+
+You can continue tomorrow.
+
+Pray if you need to.
+
+Take a deep breath.
+
+Close your eyes.
+
+And let God handle the things you cant control tonight.
+
+Sleep well, Tel. 🫂🌙`
+  ]
+},
   {
-    id: "ow-doubt",
-    title: "you doubt yourself",
-    message: "Ohh bakit mo naman yan nararamdaman.\n\nWag ka magdoubt, you are capable and strong. You are DR. Tel! :))",
-  },
-  {
-    id: "ow-encourage",
-    title: "you need encouragement",
-  message: "Hmmm KAYA MO YANNNN.\n\nano man yan sigurado ako na kayang kaya mo yan.\n GO GO GO TEL! :)) WOOOOO!!!!! \n ",
-  },
+  id: "ow-doubt",
+  title: "you doubt yourself",
+
+  messages: [
+
+    // MESSAGE 1
+    `Tel,
+
+Why are you doubting yourself?
+
+You are capable of more than you give yourself credit for.
+
+Hindi mo naman kailangang malaman agad kung paano mo gagawin lahat.
+
+Start somewhere.
+
+One step at a time.
+
+Kaya mo yan, Dr. Tel. 🤍`,
+
+    // MESSAGE 2
+    `Tel,
+
+I know sometimes you look at yourself and wonder,
+
+"Can I actually do this?"
+
+Yes.
+
+You can.
+
+Maybe youre scared.
+
+Maybe youre unsure.
+
+Thats okay.
+
+Being scared doesnt mean youre incapable.
+
+It just means you care about what youre trying to do.
+
+Keep going. 🫂`,
+
+    // MESSAGE 3
+    `Hoy Master,
+
+Stop being mean to yourself. 😤
+
+Kung kaibigan mo yung nasa situation mo ngayon, hindi mo naman siguro sasabihan ng masasamang bagay.
+
+So bakit sa sarili mo ginagawa?
+
+Give yourself the same kindness you give other people.
+
+You deserve that too. 🤍`,
+
+    // MESSAGE 4
+    `Tel,
+
+You dont need to be perfect to be capable.
+
+You can make mistakes.
+
+You can get confused.
+
+You can have days where you don't feel confident.
+
+None of those things erase what youre capable of.
+
+Keep learning.
+
+Keep trying.
+
+Youll get there.`,
+
+    // MESSAGE 5
+    `Tel,
+
+Remember this:
+
+Hindi mo kailangan makita yung buong staircase para makapagtake ng first step.
+
+You just need to know whats next.
+
+So dont worry too much about everything thats ahead.
+
+Focus on the next step.
+
+Then the next one.
+
+I believe you can handle it. ❤️`
+  ]
+},
+{
+  id: "ow-encourage",
+  title: "you need encouragement",
+
+  messages: [
+
+    // MESSAGE 1
+    `TELLLLLL!!! 😤
+
+KAYA MO YANNNNN!!!
+
+Whatever it is...
+
+GO GO GO!!!
+
+WOOOOOOO!!! 🗣️🔥
+
+Okay.
+
+That's your daily dose of encouragement.
+
+Now go get it, PAR!. 😌`,
+
+    // MESSAGE 2
+    `Tel,
+
+Whatever youre about to do...
+
+Take a deep breath.
+
+You dont have to be fearless.
+
+Just be brave enough to start.
+
+One step.
+
+Then another.
+
+I'll be cheering from the sidelines. 🫂
+
+GO TEL GO!! ❤️`,
+
+    // MESSAGE 3
+    `Hoy Tel,
+
+Remember how many things youve already gotten through?
+
+Exactly.
+
+So dont let this one moment convince you that you cant handle whats next.
+
+Youve made it this far.
+
+Keep going.
+
+I know youre tired.
+
+But youre capable.
+
+Kaya mo yan. 🤍`,
+
+    // MESSAGE 4
+    `Tel,
+
+Maybe nobody has told you this today:
+
+Im proud of you.
+
+Not just when you succeed.
+
+Not just when everything goes according to plan.
+
+Even when youre struggling and still choosing to continue.
+
+That counts too.
+
+Keep going, Master. 🫂`,
+
+    // MESSAGE 5
+    `TEL!
+
+This is your official reminder:
+
+YOU GOT THIS. 😤
+
+No overthinking.
+
+No giving up.
+
+No "baka hindi ko kaya."
+
+Try first.
+
+If it doesnt work, try again.
+
+If you need to rest, rest.
+
+Then try again.
+
+GO GO GO TEL!!! ❤️`
+  ]
+},
   {
     id: "ow-laugh",
     title: "you need to laugh",
-    message: "sige eto.\n\nRemember that time you forgot my name? Don’t worry, I still remember:) HAHAHAHAHA smile kana!!. \n Imagine mo nakasalubong moko sa daan tapos bigla ko ginawa yung \n mukbang with tirik na mata. \nHAHAHHAHAHAHAHHAHAH!",
+    messages: "sige eto.\n\nRemember that time you forgot my name? Don’t worry, I still remember:) HAHAHAHAHA smile kana!!. \n Imagine mo nakasalubong moko sa daan tapos bigla ko ginawa yung \n mukbang with tirik na mata. \nHAHAHHAHAHAHAHHAHAH!",
   },
   {
     id: "ow-angry",
     title: "you're angry",
-    message: "PSHHHH KALMA PO!.\n\nOkay lang na makaramdam ka ng galit normal yan Tel! Wag mo lang masyado i overthink yan, breathe in and out. Smile kanaaa :))",
+    messages: "PSHHHH KALMA PO!.\n\nOkay lang na makaramdam ka ng galit normal yan Tel! Wag mo lang masyado i overthink yan, breathe in and out. Smile kanaaa :))",
   },
   
   {
-    id: "ow-reminder",
-    title: "you need a reminder",
-    message: "YOUR DAILY REMINDER!.\n\nWAG KANA MAGPUPUYAT! :).",
-  },
+  id: "ow-reminder",
+  title: "you need a reminder",
+
+  messages: [
+
+    // MESSAGE 1
+    `YOUR DAILY REMINDER, TEL! 📢
+
+WAG KANA MAGPUPUYAT. 😤
+
+Yes.
+
+Im watching.
+
+HAHAHAHAHAHA.
+
+Sleep is important.
+
+Goodnight. 💤`,
+
+    // MESSAGE 2
+    `Tel,
+
+Reminder:
+
+Kumain ka na ba?
+
+Yes?
+
+Good.
+
+Hindi?
+
+GO EAT. 😤
+
+Wag puro work and responsibilities or TIKTOK.
+
+Take care of yourself too, okay? 🤍`,
+
+    // MESSAGE 3
+    `Important reminder, Tel:
+
+You dont have to reply to everyone immediately.
+
+You dont have to solve everything immediately.
+
+You dont have to be available all the time.
+
+Its okay to rest.
+
+Its okay to take a break.
+
+Take care of yourself first. 🫂`,
+
+    // MESSAGE 4
+    `Tel,
+
+Just a little reminder:
+
+Dont forget to pray.
+
+Whatever is bothering you, you can bring it to God.
+
+You dont have to have the perfect words.
+
+Just talk to Him.
+
+He listens. 🤍`,
+
+    // MESSAGE 5
+    `TEL!
+
+FINAL REMINDER. 😤
+
+Drink water.
+
+Eat properly.
+
+Rest.
+
+Pray.
+
+Dont overthink.
+
+And please...
+
+BE NICE TO YOURSELF.
+
+Okay?
+
+Good.
+
+You may now continue with your day.
+
+HAHAHAHAHAHA. ❤️`
+  ]
+},
   {
     id: "ow-good",
     title: "something good happens",
-    message: "YEHEYYYYY!!!!.\n\nCONGRATULATIONS TEL!!! CHEERSSSSS!!! :)))",
+    messages: "YEHEYYYYY!!!!.\n\nCONGRATULATIONS TEL!!! CHEERSSSSS!!! :)))",
   },
   {
     id: "ow-proud",
     title: "you're proud of yourself",
-    message: "AWWW.\n\nDESERVE MO YAN TEL! :))",
+    messages: "AWWW.\n\nDESERVE MO YAN TEL! :))",
     
   },
 
   {
     id: "ow-Msg",
     title: "Message for Tel",
-    message: "Hi TEl!\nYOU THE BEST!!! KEEP GOING! :))",
+    messages: "Hi TEl!\nYOU THE BEST!!! KEEP GOING! :))",
   },
 ];
 
@@ -887,17 +1306,26 @@ function renderOpenWhen() {
 }
 
 function openLetter(letter) {
-  document.getElementById("letter-modal-title").textContent = "Open when " + letter.title;
-  document.getElementById("letter-modal-body").textContent = letter.message;
+  // Get the correct message for this opening
+  const selectedMessage = getOpenWhenMessage(letter);
+
+  document.getElementById("letter-modal-title").textContent =
+    "Open when " + letter.title;
+
+  document.getElementById("letter-modal-body").textContent =
+    selectedMessage;
+
   const saveBtn = document.getElementById("letter-save-fav");
+
   saveBtn.onclick = () => {
     addFavorite({
       type: "openWhen",
-      text: letter.message,
+      text: selectedMessage,
       meta: "Open when " + letter.title,
-      id: letter.id,
+      id: letter.id + "-" + Date.now(),
     });
   };
+
   openModal("letter-modal");
 }
 
