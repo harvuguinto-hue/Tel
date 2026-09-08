@@ -147,12 +147,14 @@ const openWhenLetters = [
     title: "you're having a terrible day",
     messages:[ "Aww bad day?\n\nHmm let's make it better together with God. Pray ka Tel! :))",
 
-      "Awww, terrible day?\n\nCome here muna, Tel.\n\n🫂Hindi ko alam kung ano yung nangyari today, pero whatever it was, tapos na yung araw na yon.Pahinga ka muna, okay?\n\nKain ka, inom tubig, then breathe.Tomorrow is another chance. 🤍",
+      "Awww, terrible day?\n\nCome here muna, Tel.\n\nHindi ko alam kung ano yung nangyari today, pero whatever it was, tapos na yung araw na yon. Pahinga ka muna, okay?\n\nKain ka, inom tubig, then breathe.Tomorrow is another chance. 🤍",
 
       
-      "Tel,So... today decided to be a terrible day, no? 😭\n\nIt's okie. Hindi naman lahat ng araw magiging maganda.\n\nKung marami kang ginawa today and nothing seemed to go right,\n\n please dont think na wala kang nagawa.\n\nYou still made it through the day.And honestly, that is enough for tonight.\n\nRest ka muna, Tel. Bukas na natin problemahin yung bukas. 🫂`",
+      "Tel, So... today decided to be a terrible day, no? 😭\n\nIt's okie. Hindi naman lahat ng araw magiging maganda.\n\nKung marami kang ginawa today and nothing seemed to go right,\n\nplease dont think na wala kang nagawa.\n\nYou still made it through the day. And honestly, that is enough for tonight.\n\nRest ka muna, Tel. Bukas na isipin ang mga dapat problemahin.",
       
-      "Okay Tel,  Before anything else...\n\n Breathe in. 🌬️ \n\n Breathe out.\n\n  Again. \n\n\n GOOD. \n\n Now drink some water.😤  \n\nWhatever happened today, hindi mo na mababago yung nangyari.\n\n  Pero pwede mong piliin na alagaan muna sarili mo pagkatapos nito.\n\n So tonight, pahinga muna.\n\n  The world can wait until tomorrow. 🫂",
+     
+     
+      "Okay Tel,  Before anything else...\n\n Breathe in.\n\n Breathe out.\n\n  Again.\n\n GOOD.\n\n Now drink some water.\n\nWhatever happened today, hindi mo na mababago yung nangyari.\n\nPero pwede mong piliin na alagaan muna sarili mo pagkatapos neto.\n\nSo tonight, pahinga muna.\n\nThe world can wait until tomorrow.",
 
 
 
@@ -385,7 +387,7 @@ WOOOOOOO!!! 🗣️🔥
 
 Okay.
 
-That's your daily dose of encouragement.
+Thats your daily dose of encouragement.
 
 Now go get it, PAR!. 😌`,
 
