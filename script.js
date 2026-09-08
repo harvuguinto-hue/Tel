@@ -140,8 +140,13 @@ const openWhenLetters = [
   {
     id: "ow-Hi",
     title: "Hi TEL!",
-    messages: "Hello, Okay ka lang ba? :(\nI hope okay ka lang.\nTel siguro may mga araw, na takot ka na dumating\n Baka bigla kang magduda at isipin mo kung kaya mo ba talaga.\n Kapag dumating yung araw na yon Tel please alalahanin mo to \nPHILIPPPIANS 4:13,\n-I can do all things through Christ who strengthens me.\n Lapit ka lang kay God and let him give you the strength to get through that day.\n Take it one step at a time Tel, wag kang magmadali\nIm sure God will give you enough strength fot those days na natatakot ka.\nYou don't have to go through it alone.\n Smile Tel! 🤍",
-  },
+    messages: ["Hello, Okay ka lang ba? :(\nI hope okay ka lang.\nTel siguro may mga araw, na takot ka na dumating\n Baka bigla kang magduda at isipin mo kung kaya mo ba talaga.\n Kapag dumating yung araw na yon Tel please alalahanin mo to \nPHILIPPPIANS 4:13,\n-I can do all things through Christ who strengthens me.\n Lapit ka lang kay God and let him give you the strength to get through that day.\n Take it one step at a time Tel, wag kang magmadali\nIm sure God will give you enough strength fot those days na natatakot ka.\nYou don't have to go through it alone.\n Smile Tel! 🤍",
+  "Uy Hello, Kamusta kanaman today?",
+  "Hi!! okay lang ikaw?",
+  "Hi DOC!, kamusta duty?",
+  "Hello Tel!!! nag smile ka na ba today?",
+    ]
+    },
   {
     id: "ow-terrible",
     title: "you're having a terrible day",
@@ -271,7 +276,7 @@ Close your eyes.
 
 And let God handle the things you cant control tonight.
 
-Sleep well, Tel. 🫂🌙`
+Sleep well, Tel. 🌙`
   ]
 },
   {
@@ -316,7 +321,7 @@ Being scared doesnt mean youre incapable.
 
 It just means you care about what youre trying to do.
 
-Keep going. 🫂`,
+Keep going. `,
 
     // MESSAGE 3
     `Hoy Master,
@@ -406,7 +411,7 @@ One step.
 
 Then another.
 
-I'll be cheering from the sidelines. 🫂
+I'll be cheering from the sidelines. 
 
 GO TEL GO!! ❤️`,
 
@@ -444,7 +449,7 @@ Even when youre struggling and still choosing to continue.
 
 That counts too.
 
-Keep going, Master. 🫂`,
+Keep going, Master. `,
 
     // MESSAGE 5
     `TEL!
@@ -473,12 +478,25 @@ GO GO GO TEL!!! ❤️`
   {
     id: "ow-laugh",
     title: "you need to laugh",
-    messages: "sige eto.\n\nRemember that time you forgot my name? Don’t worry, I still remember:) HAHAHAHAHA smile kana!!. \n Imagine mo nakasalubong moko sa daan tapos bigla ko ginawa yung \n mukbang with tirik na mata. \nHAHAHHAHAHAHAHHAHAH!",
+    messages:["sige eto.\n\nRemember that time you forgot my name? Don’t worry, I still remember:) HAHAHAHAHA smile kana!!.\nImagine mo nakasalubong moko sa daan tapos bigla ko ginawa yung \n mukbang with tirik na mata.\nHAHAHHAHAHAHAHHAHAH!",
+        "Ano ang tawag sa pamatay ng insekto na di marunong mag tagalog?\n\n\n\n\n\nBAIgon!",
+        "Pst, may na alala ako nung time na nakwento mo saken na nagpunta ka ng pet shop,\n\nnaghahnap ka ng wetfood then nagtanong ka kay kuya\n\n\n anong masarap HAHAHHAHAHAHHAHA bad ka!",
+    
+    ]
   },
   {
     id: "ow-angry",
     title: "you're angry",
-    messages: "PSHHHH KALMA PO!.\n\nOkay lang na makaramdam ka ng galit normal yan Tel! Wag mo lang masyado i overthink yan, breathe in and out. Smile kanaaa :))",
+    messages: ["PSHHHH KALMA PO!.\n\nOkay lang na makaramdam ka ng galit normal yan Tel! Wag mo lang masyado i overthink yan, breathe in and out. Smile kanaaa :))",
+                
+            "Uy bat gagalet ka?\n\n Kalma ka hinga ka!",
+
+            "GAGALIT KANA NAMAN?!!\n\nBilang ka mabagal ha\n\n 1,2,3,4,5,6,7,8,9,10\n\nOkay na? Good. Smile kanaaa :))",
+            
+            "Ali ku sumulat madakal keni kasi bihira kamu mimwa and balu ku kapag mimwa ka\n\nGumaga ka, kaya after mu mengaga kalma ka\n\nisipan mula deng bage na makapagpasaya keka\n\nokay muyan na mimwa ka tao ka padin pretty kamu pero tao kapadin\n\nsmile naka tapos pray ka ha!!"
+
+
+    ]
   },
   
   {
@@ -534,7 +552,7 @@ Its okay to rest.
 
 Its okay to take a break.
 
-Take care of yourself first. 🫂`,
+Take care of yourself first. `,
 
     // MESSAGE 4
     `Tel,
@@ -582,19 +600,41 @@ HAHAHAHAHAHA. ❤️`
   {
     id: "ow-good",
     title: "something good happens",
-    messages: "YEHEYYYYY!!!!.\n\nCONGRATULATIONS TEL!!! CHEERSSSSS!!! :)))",
+    messages: ["YEHEYYYYY!!!!.\n\nCONGRATULATIONS TEL!!! CHEERSSSSS!!! :)))",
+      "Nandito ka kasi may nangyari na maganda sayo today!\n\n Congrats Tel! :))\n\nI hope na i celebrate mo etong small or big achievement mo today! HAHAHAHAHHA! :))",
+
+
+
+
+
+
+    ]
   },
   {
     id: "ow-proud",
     title: "you're proud of yourself",
-    messages: "AWWW.\n\nDESERVE MO YAN TEL! :))",
+    messages: ["AWWW.\n\nDESERVE MO YAN TEL! :))",
+
+      "Ang galing mo naman hindi ko alam ano na achieve mo today!\n\nPero gano man kaliit or kalaki yan importante pa din yan!! proud of you Tel!",
+
+      "Celebrate your wins TEL!\n\n MATCHA MATCHA MATCHA!! UNIQLOOOO!!! MANGOOOOO!!!!",
+
+      "Treat yourself TEL! :))\n\nYou deserve it! HAHAHAHAHAHAHHA! Congrats!!!!",
+
+
+    ]
     
   },
 
   {
     id: "ow-Msg",
     title: "Message for Tel",
-    messages: "Hi TEl!\nYOU THE BEST!!! KEEP GOING! :))",
+    messages: ["Hi TEl!\nYOU THE BEST!!! KEEP GOING! :))",
+
+
+
+
+    ]
   },
 ];
 
