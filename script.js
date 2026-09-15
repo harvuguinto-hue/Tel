@@ -1917,6 +1917,153 @@ function bindEvents() {
 }
 
 // ==============================
+// BIRTHDAY MODE
+// ==============================
+
+// TESTING: Set this to true to test birthday mode on any date
+const BIRTHDAY_MODE_TEST = false;
+
+function isBirthdayToday() {
+  const today = new Date();
+  const month = today.getMonth() + 1;
+  const day = today.getDate();
+  
+  // Check if it's September 22, or if test mode is enabled
+  if (BIRTHDAY_MODE_TEST || (month === 9 && day === 22)) {
+    return true;
+  }
+  return false;
+}
+
+function initBirthdayMode() {
+  if (!isBirthdayToday()) return;
+  
+  const modal = document.getElementById("birthday-modal");
+  modal.hidden = false;
+  document.body.style.overflow = "hidden";
+  
+  let currentScreen = 1;
+  
+  function showScreen(num) {
+    document.querySelectorAll(".birthday-screen").forEach(el => {
+      el.classList.remove("active");
+    });
+    const screen = document.getElementById(`birthday-screen-${num}`);
+    if (screen) {
+      screen.classList.add("active");
+    }
+    currentScreen = num;
+  }
+  
+  // Screen 1 next button
+  document.getElementById("birthday-next-1").addEventListener("click", () => {
+    showScreen(2);
+  });
+  
+  // Screen 2 next button with petal animation
+  document.getElementById("birthday-next-2").addEventListener("click", () => {
+    const container = document.getElementById("birthday-petals-container");
+    const emojis = ["🌷", "🌹", "🌸", "🌼", "🌺"];
+    
+    for (let i = 0; i < 15; i++) {
+      const petal = document.createElement("div");
+      petal.className = "birthday-petal birthday-petal-float";
+      petal.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      petal.style.setProperty("--x", `${(Math.random() - 0.5) * 200}px`);
+      petal.style.setProperty("--rotation", `${Math.random() * 360}deg`);
+      petal.style.left = "50%";
+      petal.style.top = "50%";
+      petal.style.transform = "translate(-50%, -50%)";
+      petal.style.animationDelay = `${Math.random() * 0.3}s`;
+      container.appendChild(petal);
+      
+      setTimeout(() => petal.remove(), 2600);
+    }
+    
+    setTimeout(() => showScreen(3), 300);
+  });
+  
+  // Screen 3 envelope opening
+  const envelope = document.getElementById("birthday-envelope");
+  const letterContent = document.getElementById("birthday-letter-content");
+  const nextBtn3 = document.getElementById("birthday-next-3");
+  
+  envelope.addEventListener("click", () => {
+    envelope.hidden = true;
+    letterContent.hidden = false;
+    nextBtn3.hidden = false;
+  });
+  
+  nextBtn3.addEventListener("click", () => {
+    showScreen(4);
+  });
+  
+  // Screen 4 next button
+  document.getElementById("birthday-next-4").addEventListener("click", () => {
+    showScreen(5);
+  });
+  
+  // Screen 5 gift box opening
+  const giftbox = document.getElementById("birthday-giftbox");
+  const finalMessage = document.getElementById("birthday-final-message");
+  
+  giftbox.addEventListener("click", () => {
+    giftbox.classList.add("opened");
+    setTimeout(() => {
+      giftbox.hidden = true;
+      finalMessage.hidden = false;
+      
+      // Trigger confetti and hearts
+      createConfetti();
+      createHearts();
+    }, 600);
+  });
+  
+  // End button
+  document.getElementById("birthday-end").addEventListener("click", () => {
+    modal.hidden = true;
+    document.body.style.overflow = "";
+  });
+}
+
+function createConfetti() {
+  const container = document.getElementById("birthday-confetti-container");
+  const confettiEmojis = ["🎉", "✨", "🎊", "💫", "⭐"];
+  
+  for (let i = 0; i < 30; i++) {
+    const confetti = document.createElement("div");
+    confetti.className = "confetti";
+    confetti.textContent = confettiEmojis[Math.floor(Math.random() * confettiEmojis.length)];
+    confetti.style.left = Math.random() * window.innerWidth + "px";
+    confetti.style.top = "-20px";
+    confetti.style.setProperty("--confetti-x", `${(Math.random() - 0.5) * 300}px`);
+    confetti.style.setProperty("--confetti-rotation", `${Math.random() * 720}deg`);
+    confetti.style.animationDelay = `${Math.random() * 0.5}s`;
+    
+    container.appendChild(confetti);
+    setTimeout(() => confetti.remove(), 3500);
+  }
+}
+
+function createHearts() {
+  const container = document.getElementById("birthday-confetti-container");
+  
+  for (let i = 0; i < 12; i++) {
+    const heart = document.createElement("div");
+    heart.className = "heart-particle";
+    heart.textContent = "🤍";
+    heart.style.left = window.innerWidth / 2 + "px";
+    heart.style.top = window.innerHeight / 2 + "px";
+    heart.style.setProperty("--heart-x", `${(Math.random() - 0.5) * 200}px`);
+    heart.style.setProperty("--heart-y", `${-100 - Math.random() * 200}px`);
+    heart.style.animationDelay = `${i * 0.1}s`;
+    
+    container.appendChild(heart);
+    setTimeout(() => heart.remove(), 3500);
+  }
+}
+
+// ==============================
 // INIT
 // ==============================
 function init() {
@@ -1928,6 +2075,9 @@ function init() {
   bindEvents();
 
   updateCharCount();
+
+  // Birthday Mode
+  initBirthdayMode();
 
   // Greeting
   const specialDate = getTodaySpecialDate();

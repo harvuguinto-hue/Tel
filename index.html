@@ -335,6 +335,118 @@
   <!-- Toast -->
   <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
 
+  <!-- Birthday Modal -->
+ <div id="birthday-modal" class="birthday-modal" role="dialog" aria-modal="true" hidden>
+  <div class="birthday-overlay"></div>
+
+  <div class="birthday-content">
+
+    <!-- Screen 1: Intro -->
+    <div id="birthday-screen-1" class="birthday-screen active">
+      <div class="birthday-screen-inner">
+
+        <img 
+          src="images/tiger.png" 
+          alt="" 
+          class="birthday-sparkle-img"
+        >
+
+        <h2 class="birthday-greeting">
+          Today is a little more special. 
+        </h2>
+
+        <p class="birthday-subheading">
+          Happy Birthday, Tel. 🤍
+        </p>
+
+        <p class="birthday-message">
+          I made something a little different for you today.
+        </p>
+
+        <button class="birthday-btn" id="birthday-next-1">
+          Open your birthday surprise →
+        </button>
+
+      </div>
+    </div>
+
+      <!-- Screen 2: Birthday Bouquet -->
+      <div id="birthday-screen-2" class="birthday-screen">
+        <div class="birthday-screen-inner">
+          <div class="birthday-bouquet-container">
+            <div class="birthday-flower" style="animation-delay: 0s">🌷</div>
+            <div class="birthday-flower" style="animation-delay: 0.15s">🌹</div>
+            <div class="birthday-flower" style="animation-delay: 0.3s">🌼</div>
+            <div class="birthday-flower" style="animation-delay: 0.45s">🌸</div>
+            <div class="birthday-flower" style="animation-delay: 0.6s">🌺</div>
+          </div>
+          <p class="birthday-bouquet-title">For the birthday girl 🌷</p>
+          <p class="birthday-bouquet-subtitle">Something small for your special day.</p>
+          <div id="birthday-petals-container" class="birthday-petals"></div>
+          <button class="birthday-btn" id="birthday-next-2">Tap to continue →</button>
+        </div>
+      </div>
+
+      <!-- Screen 3: Birthday Letter -->
+      <div id="birthday-screen-3" class="birthday-screen">
+        <div class="birthday-screen-inner">
+          <div class="birthday-envelope-closed" id="birthday-envelope">
+            <p class="birthday-envelope-text">Open me — it's your birthday 🤍</p>
+          </div>
+          <div id="birthday-letter-content" class="birthday-letter" hidden>
+            <div class="birthday-letter-paper">
+              <h3>Happy birthday, Tel. 🤍</h3>
+              <p>I hope this year brings you more reasons to smile, more moments that make you genuinely happy, and a little more peace in between all the busy days.</p>
+              <p>I hope you continue becoming the person you want to be, at your own pace and in your own way.</p>
+              <p>And whenever things get a little heavy, I hope you remember that you don't have to have everything figured out all at once.</p>
+              <p>One day at a time.</p>
+              <p>Enjoy your day, birthday girl. You deserve to be celebrated. 🤍</p>
+            </div>
+          </div>
+          <button class="birthday-btn" id="birthday-next-3" hidden>There's more... →</button>
+        </div>
+      </div>
+
+      <!-- Screen 4: Birthday Checkup -->
+      <div id="birthday-screen-4" class="birthday-screen">
+        <div class="birthday-screen-inner">
+          <h2 class="birthday-checkup-title">Birthday Check-up 🩺</h2>
+          <div class="birthday-checklist">
+            <div class="birthday-checkitem">✓ Smile</div>
+            <div class="birthday-checkitem">✓ Eat something good</div>
+            <div class="birthday-checkitem">✓ Drink water</div>
+            <div class="birthday-checkitem">✓ Rest when needed</div>
+            <div class="birthday-checkitem">✓ Don't overthink today</div>
+            <div class="birthday-checkitem">✓ Enjoy your birthday</div>
+          </div>
+          <div class="birthday-diagnosis">
+            <p class="birthday-diagnosis-label">Diagnosis:</p>
+            <p class="birthday-diagnosis-text">You deserve a really good day. 🤍</p>
+          </div>
+          <button class="birthday-btn" id="birthday-next-4">One more thing → </button>
+        </div>
+      </div>
+
+      <!-- Screen 5: Gift -->
+      <div id="birthday-screen-5" class="birthday-screen">
+        <div class="birthday-screen-inner">
+          <p class="birthday-gift-text">Okay, last one. Promise. 🤍</p>
+          <div id="birthday-giftbox" class="birthday-giftbox">
+            <div class="birthday-giftbox-top"></div>
+            <div class="birthday-giftbox-bottom"></div>
+          </div>
+          <div id="birthday-final-message" class="birthday-final-message" hidden>
+            <h3>Here's to 29. 🤍</h3>
+            <p>May this chapter be kinder to you, fuller, and filled with things that make you genuinely happy.</p>
+            <p>Happy birthday, Tel. 🤍</p>
+            <button class="birthday-btn" id="birthday-end">Back to the site →</button>
+          </div>
+          <div id="birthday-confetti-container"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>
