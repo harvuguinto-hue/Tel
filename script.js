@@ -15,69 +15,44 @@ const CONFIG = {
 // SPECIAL DATE MESSAGES
 // ==============================
 
+// ==============================
+// SPECIAL DATE MESSAGES
+// ==============================
+
 const specialDates = {
   "01-01": {
-    loading: "Happy New Year, Tel ♡",
+    loading: "Happy New Year, Tel!",
     greeting: "Happy New Year, Tel!",
   },
 
   "02-14": {
-    loading: "Happy Valentine's Day, Tel ♡",
+    loading: "Happy Valentine's Day, Tel!",
     greeting: "Happy Valentine's Day, Tel!",
   },
 
   "09-22": {
-    loading: "Happy Birthday, Tel ♡",
+    loading: "Happy Birthday, Tel!",
     greeting: "Happy Birthday, Tel!",
   },
 
   "12-25": {
-    loading: "Merry Christmas, Tel ♡",
+    loading: "Merry Christmas, Tel!",
     greeting: "Merry Christmas, Tel!",
   },
 };
 
 
-function getTodaySpecialDate() {
-  const specialDates = {
-  "01-01": {
-    loading: "Happy New Year, Tel ♡",
-    greeting: "Happy New Year, Tel! :))))",
-  },
-
-  "02-14": {
-    loading: "Happy Valentine's Day, Tel ♡",
-    greeting: "Happy Valentine's Day, Tel! <3333",
-  },
-
-  "09-22": {
-    loading: "Happy Birthday, Tel ♡",
-    greeting: "Hmmm Tel, eto yung first birthday mo na wala siya. First Christmas, first New Year, \n even Valentine’s Day. Hindi ko alam paano ko sisimulan kasi feeling ko sobrang bigat nito sa pakiramdam.\n Pero I think kaya mo to ihandle. Be brave, Tel! 🤍Siguro eto na yung start ng next chapter ng buhay mo. Makakapagsimula ka ulit, slowly, at sarili mong pace. \nSana maenjoy mo pa rin yung mga occasions na darating. Hindi naman kailangan na perfect yung araw, na dapat okay ka palagi sa mga araw na ’yon. \nKailangan mo lang i-enjoy kung anong meron, kahit pauntiunti, at salubungin mo lahat ng yan with a smile. 😊\nAnd with your friends and God, sobrang lakas ng backup mo hehe. Kaya wag kang matakot, ha? \nMarami pang magagandang bagay na darating sa buhay mo. And when that time comes, when those good things finally find you...\nDESERVE MO. HAPPY HAPPY BIRTHDAY TEL!🤍",
-  },
-
-  "12-25": {
-    loading: "Merry Christmas, Tel ♡",
-    greeting: "Merry Christmas, Tel! :)",
-  },
-};
-
+// ==============================
+// GET TODAY'S SPECIAL DATE
+// ==============================
 
 function getTodaySpecialDate() {
   const today = new Date();
 
-  const month = String(
-    today.getMonth() + 1
-  ).padStart(2, "0");
+  const month = String(today.getMonth() + 1).padStart(2, "0");
+  const day = String(today.getDate()).padStart(2, "0");
 
-  const day = String(
-    today.getDate()
-  ).padStart(2, "0");
-
-  return (
-    specialDates[`${month}-${day}`] ||
-    null
-  );
-}
+  return specialDates[`${month}-${day}`] || null;
 }
 
 // ---------- Personal messages ("Something I want you to remember") ----------
@@ -649,37 +624,39 @@ HAHAHAHAHAHA. ❤️`
 // Add your recordings here whenever you feel the time is right.
 // Put the audio files in an "audio" folder in the project.
 // A voicemail disappears from Tel's inbox after the recording finishes.
-const voicemailMessages = [
+
+
+//const voicemailMessages = [
  
 
  //Add future messages like this:
-   {
-   id: "vm-002",
-     title: "Take a little breath, Happy Birthday Tel!",
-    date: "September 22, 2026",
-    audio: "audio/HappyBirthday.mp3",
-   },
+  // {
+  // id: "vm-002",
+   //  title: "Take a little breath, Happy Birthday Tel!",
+   // date: "September 22, 2026",
+//audio: "audio/HappyBirthday.mp3",
+ //  },
 
-  ]
+ // ]
 const musicItems = [
   {
     id: "song-1",
     title: "You got this",
-    artist: "Artist or 'Various'",
+    artist: "Good Life",
     description: "Motivation?",
     url: "https://open.spotify.com/track/5MDMFoTpN4ZIDUjNRt3AoN?si=281f74715aa24d16", // ← replace with real link
   },
   {
     id: "song-2",
     title: ":)",
-    artist: "Artist",
+    artist: "Pink Life",
     description: "For the nights that need something gentle.",
     url: "https://open.spotify.com/track/3NYgpHe5Lcz0LoXVeZwmRN?si=dac9b75699e24c3b", // ← replace
   },
   {
     id: "song-3",
     title: "Sing along",
-    artist: "Artist",
+    artist: "Tanananan tananan tanananann tananananananan tan",
     description: "When words feel like too much.",
     url: "https://open.spotify.com/track/4w1lzcaoZ1IC2K5TwjalRP?si=4ecb51d24387480c", // ← replace
   },
