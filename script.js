@@ -102,11 +102,11 @@ const openWhenLetters = [
 
     "Sad kana naman?\n\nAno nangyare?\n\nmay na alala ka?\n\n Tel alam mo may mga bagay na pag na aalala mo masakit pero hindi naman siguro ibig sabihin non hindi kana pwede mag smile\n\nKaya mo yan Tel! Pray ka palagi",
 
-    "Tel,\n\nI hope you know that being sad doesn't make you weak.\n\nMinsan napapagod lang talaga tayo. Minsan may mga bagay na hindi natin kayang kontrolin. At minsan kailangan lang talaga nating umiyak nang kaunti.\n\nSo if you need to cry, go cry.\n\nTapos after that, wipe those tears and remember na nandito ka pa rin. And that's already something. 🤍",
+    "Tel,\n\nI hope you know that being sad doesn't make you weak.\n\nMinsan napapagod lang talaga tayo. Minsan may mga bagay na hindi natin kayang kontrolin. At minsan kailangan lang talaga nating umiyak nang kaunti.\n\nSo if you need to cry, go cry.\n\nTapos after that, wipe those tears and remember na nandito ka pa din. And that's already something. 🤍",
 
     "Tel,\n\nIf you opened this again, maybe you needed another reminder.\n\nYou're doing okay.\n\nMaybe not perfectly. Maybe not the way you wanted. But you're still trying, and that's enough for today.\n\nSo don't be too hard on yourself, okay?\n\nRest if you need to. Cry if you need to. Start again when you're ready.\n\nAnd if nobody has told you today...\n\nI'm proud of you, Tel. ❤️",
 
-    "Tel,\n\nHindi ko man alam kung ano yung pinagdadaanan mo ngayon, I hope this little message reminds you of one thing:\n\nHindi ka nagiisa.\n\nMaraming taon ang nagmamahal sayo. Maraming taong gusto kang makita na okay ulit.\n\nKasama ako doon.\n\nKaya pahinga ka lang muna, Master. Hindi mo kailangang dalhin lahat mag-isa. 🫂",
+    "Tel,\n\nHindi ko man alam kung ano yung pinagdadaanan mo ngayon, I hope this little message reminds you of one thing:\n\nHindi ka nagiisa.\n\nMaraming taon ang nagmamahal sayo. Maraming taong gusto kang makita na okay ulit.\n\nKasama ako doon.\n\nKaya pahinga ka lang muna, Master. Hindi mo kailangang dalhin lahat mag-isa. ",
 
     "Tel,\n\nMaybe today just isn't your day.\n\nAnd that's okay.\n\nHindi ibig sabihin na dahil pangit yung araw nato, pangit na rin ang lahat.\n\nOne bad day doesn't define you. One painful moment doesn't define your whole life.\n\nDarating din yung araw na mapapangiti ka ulit nang hindi mo pinipilit.\n\nHintayin lang natin. 🤍",
 
@@ -205,7 +205,7 @@ Why are you still awake?!
 
 HAHAHAHAHAHA.
 
-Pero seriously, kailangan mo rin magrest.
+Pero seriously, kailangan mo din magrest.
 
 Hindi pwedeng puro trabaho, isip, at overthink.
 
@@ -1893,152 +1893,6 @@ function bindEvents() {
   });
 }
 
-// ==============================
-// BIRTHDAY MODE
-// ==============================
-
-// TESTING: Set this to true to test birthday mode on any date
-const BIRTHDAY_MODE_TEST = false;
-
-function isBirthdayToday() {
-  const today = new Date();
-  const month = today.getMonth() + 1;
-  const day = today.getDate();
-  
-  // Check if it's September 22, or if test mode is enabled
-  if (BIRTHDAY_MODE_TEST || (month === 9 && day === 22)) {
-    return true;
-  }
-  return false;
-}
-
-function initBirthdayMode() {
-  if (!isBirthdayToday()) return;
-  
-  const modal = document.getElementById("birthday-modal");
-  modal.hidden = false;
-  document.body.style.overflow = "hidden";
-  
-  let currentScreen = 1;
-  
-  function showScreen(num) {
-    document.querySelectorAll(".birthday-screen").forEach(el => {
-      el.classList.remove("active");
-    });
-    const screen = document.getElementById(`birthday-screen-${num}`);
-    if (screen) {
-      screen.classList.add("active");
-    }
-    currentScreen = num;
-  }
-  
-  // Screen 1 next button
-  document.getElementById("birthday-next-1").addEventListener("click", () => {
-    showScreen(2);
-  });
-  
-  // Screen 2 next button with petal animation
-  document.getElementById("birthday-next-2").addEventListener("click", () => {
-    const container = document.getElementById("birthday-petals-container");
-    const emojis = ["🌷", "🌹", "🌸", "🌼", "🌺"];
-    
-    for (let i = 0; i < 15; i++) {
-      const petal = document.createElement("div");
-      petal.className = "birthday-petal birthday-petal-float";
-      petal.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-      petal.style.setProperty("--x", `${(Math.random() - 0.5) * 200}px`);
-      petal.style.setProperty("--rotation", `${Math.random() * 360}deg`);
-      petal.style.left = "50%";
-      petal.style.top = "50%";
-      petal.style.transform = "translate(-50%, -50%)";
-      petal.style.animationDelay = `${Math.random() * 0.3}s`;
-      container.appendChild(petal);
-      
-      setTimeout(() => petal.remove(), 2600);
-    }
-    
-    setTimeout(() => showScreen(3), 300);
-  });
-  
-  // Screen 3 envelope opening
-  const envelope = document.getElementById("birthday-envelope");
-  const letterContent = document.getElementById("birthday-letter-content");
-  const nextBtn3 = document.getElementById("birthday-next-3");
-  
-  envelope.addEventListener("click", () => {
-    envelope.hidden = true;
-    letterContent.hidden = false;
-    nextBtn3.hidden = false;
-  });
-  
-  nextBtn3.addEventListener("click", () => {
-    showScreen(4);
-  });
-  
-  // Screen 4 next button
-  document.getElementById("birthday-next-4").addEventListener("click", () => {
-    showScreen(5);
-  });
-  
-  // Screen 5 gift box opening
-  const giftbox = document.getElementById("birthday-giftbox");
-  const finalMessage = document.getElementById("birthday-final-message");
-  
-  giftbox.addEventListener("click", () => {
-    giftbox.classList.add("opened");
-    setTimeout(() => {
-      giftbox.hidden = true;
-      finalMessage.hidden = false;
-      
-      // Trigger confetti and hearts
-      createConfetti();
-      createHearts();
-    }, 600);
-  });
-  
-  // End button
-  document.getElementById("birthday-end").addEventListener("click", () => {
-    modal.hidden = true;
-    document.body.style.overflow = "";
-  });
-}
-
-function createConfetti() {
-  const container = document.getElementById("birthday-confetti-container");
-  const confettiEmojis = ["🎉", "✨", "🎊", "💫", "⭐"];
-  
-  for (let i = 0; i < 30; i++) {
-    const confetti = document.createElement("div");
-    confetti.className = "confetti";
-    confetti.textContent = confettiEmojis[Math.floor(Math.random() * confettiEmojis.length)];
-    confetti.style.left = Math.random() * window.innerWidth + "px";
-    confetti.style.top = "-20px";
-    confetti.style.setProperty("--confetti-x", `${(Math.random() - 0.5) * 300}px`);
-    confetti.style.setProperty("--confetti-rotation", `${Math.random() * 720}deg`);
-    confetti.style.animationDelay = `${Math.random() * 0.5}s`;
-    
-    container.appendChild(confetti);
-    setTimeout(() => confetti.remove(), 3500);
-  }
-}
-
-function createHearts() {
-  const container = document.getElementById("birthday-confetti-container");
-  
-  for (let i = 0; i < 12; i++) {
-    const heart = document.createElement("div");
-    heart.className = "heart-particle";
-    heart.textContent = "🤍";
-    heart.style.left = window.innerWidth / 2 + "px";
-    heart.style.top = window.innerHeight / 2 + "px";
-    heart.style.setProperty("--heart-x", `${(Math.random() - 0.5) * 200}px`);
-    heart.style.setProperty("--heart-y", `${-100 - Math.random() * 200}px`);
-    heart.style.animationDelay = `${i * 0.1}s`;
-    
-    container.appendChild(heart);
-    setTimeout(() => heart.remove(), 3500);
-  }
-}
 
 // ==============================
 // INIT
@@ -2070,6 +1924,219 @@ function init() {
       CONFIG.customGreeting;
 
   }
+}
+// ==============================
+// ==============================
+// BIRTHDAY MODE
+// ==============================
+
+// TESTING: Set this to true to test birthday mode on any date
+const BIRTHDAY_MODE_TEST = false;
+
+// Remembers whether Tel has already opened her birthday surprise
+const BIRTHDAY_VIEWED_KEY = "tel_birthday_2026_viewed";
+
+function isBirthdayToday() {
+  const today = new Date();
+  const month = today.getMonth() + 1;
+  const day = today.getDate();
+
+  // Birthday is September 22
+  if (BIRTHDAY_MODE_TEST || (month === 9 && day === 22)) {
+    return true;
+  }
+
+  return false;
+}
+
+function initBirthdayMode() {
+
+  // Don't show if it isn't September 22
+  if (!isBirthdayToday()) return;
+
+  // Don't show again if Tel already viewed it
+  if (localStorage.getItem(BIRTHDAY_VIEWED_KEY) === "true") {
+    return;
+  }
+
+  const modal = document.getElementById("birthday-modal");
+
+  if (!modal) return;
+
+  // ==========================================
+  // MARK AS VIEWED
+  // ==========================================
+  // The moment the birthday surprise opens,
+  // remember that it has been viewed.
+  localStorage.setItem(BIRTHDAY_VIEWED_KEY, "true");
+
+  modal.hidden = false;
+  document.body.style.overflow = "hidden";
+
+  let currentScreen = 1;
+
+  function showScreen(num) {
+
+    document.querySelectorAll(".birthday-screen").forEach(el => {
+      el.classList.remove("active");
+    });
+
+    const screen =
+      document.getElementById(`birthday-screen-${num}`);
+
+    if (screen) {
+      screen.classList.add("active");
+    }
+
+    currentScreen = num;
+  }
+
+  // ==========================================
+  // SCREEN 1
+  // ==========================================
+
+  document
+    .getElementById("birthday-next-1")
+    .addEventListener("click", () => {
+      showScreen(2);
+    });
+
+  // ==========================================
+  // SCREEN 2
+  // ==========================================
+
+  document
+    .getElementById("birthday-next-2")
+    .addEventListener("click", () => {
+
+      const container =
+        document.getElementById("birthday-petals-container");
+
+      const emojis = ["🌷", "🌹", "🌸", "🌼", "🌺"];
+
+      for (let i = 0; i < 15; i++) {
+
+        const petal = document.createElement("div");
+
+        petal.className =
+          "birthday-petal birthday-petal-float";
+
+        petal.textContent =
+          emojis[Math.floor(Math.random() * emojis.length)];
+
+        petal.style.setProperty(
+          "--x",
+          `${(Math.random() - 0.5) * 200}px`
+        );
+
+        petal.style.setProperty(
+          "--rotation",
+          `${Math.random() * 360}deg`
+        );
+
+        petal.style.left = "50%";
+        petal.style.top = "50%";
+
+        petal.style.transform =
+          "translate(-50%, -50%)";
+
+        petal.style.animationDelay =
+          `${Math.random() * 0.3}s`;
+
+        container.appendChild(petal);
+
+        setTimeout(() => {
+          petal.remove();
+        }, 2600);
+      }
+
+      setTimeout(() => {
+        showScreen(3);
+      }, 300);
+
+    });
+
+  // ==========================================
+  // SCREEN 3 - ENVELOPE
+  // ==========================================
+
+  const envelope =
+    document.getElementById("birthday-envelope");
+
+  const letterContent =
+    document.getElementById("birthday-letter-content");
+
+  const nextBtn3 =
+    document.getElementById("birthday-next-3");
+
+  envelope.addEventListener("click", () => {
+
+    envelope.hidden = true;
+
+    letterContent.hidden = false;
+
+    nextBtn3.hidden = false;
+
+  });
+
+  nextBtn3.addEventListener("click", () => {
+    showScreen(4);
+  });
+
+  // ==========================================
+  // SCREEN 4
+  // ==========================================
+
+  document
+    .getElementById("birthday-next-4")
+    .addEventListener("click", () => {
+
+      showScreen(5);
+
+    });
+
+  // ==========================================
+  // SCREEN 5 - GIFT BOX
+  // ==========================================
+
+  const giftbox =
+    document.getElementById("birthday-giftbox");
+
+  const finalMessage =
+    document.getElementById("birthday-final-message");
+
+  giftbox.addEventListener("click", () => {
+
+    giftbox.classList.add("opened");
+
+    setTimeout(() => {
+
+      giftbox.hidden = true;
+
+      finalMessage.hidden = false;
+
+      // Trigger confetti and hearts
+      createConfetti();
+      createHearts();
+
+    }, 600);
+
+  });
+
+  // ==========================================
+  // END BUTTON
+  // ==========================================
+
+  document
+    .getElementById("birthday-end")
+    .addEventListener("click", () => {
+
+      modal.hidden = true;
+
+      document.body.style.overflow = "";
+
+    });
+
 }
 const bouquetImages = Array.from(
   { length: 120 },
@@ -2110,7 +2177,7 @@ const messages = [
   "I hope you get a good break today. You deserve one. 🤍",
   "Just leaving these here for you. 🌸",
   "Sana today feels lighter than yesterday. 🌿",
-  "Hi Tel, May flowers ka pa rin. 😂💐",
+  "Hi Tel, May flowers ka pa din. 😂💐",
   "Whatever you're doing today, don't forget to breathe. 🤍",
   "Here's your tiny dose of something nice. 🌷",
   "Sana may makapagpasmile sayo today. 🌸",
