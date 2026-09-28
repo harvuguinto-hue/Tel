@@ -161,6 +161,20 @@ const openWhenLetters = [
     
     ]
     },
+
+    {
+    id: "ow-Tel",
+    title: "you're feeling so sadddddd",
+    messages: ["Kamusta ka na?.\n\n Huy wag ka magpapatalo sa lungkot at sa sakit! kaya mo yan kahit ano pa yan Tel! andito lang din ako pray ka palagi haaa, my phone is always open for you Tel. You can reach out anytime. Wag kang magdalawang isip na magreach out! Sabihin mo lang Hello, HAHAHAHAHA! smileee kanaaa :)).",
+    
+
+      "Just reach out, okie? 🤍",
+
+      "Hoy Master,\n\nLonely era na naman ba? 😭\n\nSige lang, I'll allow it.\n\nPero don't stay there too long ha. 😤\n\nMessage someone.\n\n  Talk to your friends.  Go outside.\n\n  Or kahit humiga ka lang muna and listen to your favorite music.\n\n  You don't have to fight the feeling alone.\n\nAndito lang ako.",
+    "Tel,  You dont always have to be surrounded by people to be okay.\n\n  Sometimes you just need a little quiet.\n\n So if you want to be alone for a while, thats okay.\n\n  Just remember the difference between choosing some quiet time and thinking that nobody cares about you.\n\nBecause people do.:)) ",
+    
+    ]
+    },
   {
   id: "ow-sleep",
   title: "you can't sleep",
