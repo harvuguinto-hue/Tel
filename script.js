@@ -74,7 +74,14 @@ const personalMessages = [
      "ATTENTION EVERYONE: TEL IS AMAZING.",
      "Tel, today’s goal: survive and be cute.",
      "Tel, ikaw muna. You deserve it.",
-
+     "Tel, you deserve all the good things this world has to offer. You deserve the same love you give, and you deserve to wake up happy. You deserve everything you think you don’t. You deserve to be proud of yourself, and you deserve to be proud of the life you’re building. You deserve to be happy, Tel. You deserve to be loved. You deserve to be seen. You deserve to be celebrated. You deserve to be comforted. You deserve to be cared for. You deserve to be safe. You deserve to be heard. You deserve to be understood. You deserve to be supported. You deserve to be appreciated. You deserve to be respected. You deserve to be valued. You deserve to be acknowledged. You deserve to be recognized. You deserve to be encouraged. You deserve to be inspired. You deserve to be motivated. You deserve to be empowered. You deserve to be uplifted. You deserve to be strengthened. You deserve to be healed. You deserve to be renewed. You deserve to be restored. You deserve to be transformed. You deserve to be reborn.",
+      "Smile if you can!",
+      "Wag ka masyadong harsh sa sarili mo, Tel. You’re doing better than you think.",
+      "Pray Tel! God is always with you.",
+      "Sana okay ka lang!",
+      "My phone is always open for you, Tel. You can reach out anytime.",
+      "Wag ka malumbay sayang ang pretty face naman Tel! Smile kanaaa :))",
+      "Mag iingat ka palagi!",
 
 ];
 function getOpenWhenMessage(item) {
