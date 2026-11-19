@@ -113,7 +113,7 @@ const openWhenLetters = [
 
     "Tel,\n\nIf you opened this again, maybe you needed another reminder.\n\nYou're doing okay.\n\nMaybe not perfectly. Maybe not the way you wanted. But you're still trying, and that's enough for today.\n\nSo don't be too hard on yourself, okay?\n\nRest if you need to. Cry if you need to. Start again when you're ready.\n\nAnd if nobody has told you today...\n\nI'm proud of you, Tel. ❤️",
 
-    "Tel,\n\nHindi ko man alam kung ano yung pinagdadaanan mo ngayon, I hope this little message reminds you of one thing:\n\nHindi ka nagiisa.\n\nMaraming taon ang nagmamahal sayo. Maraming taong gusto kang makita na okay ulit.\n\nKasama ako doon.\n\nKaya pahinga ka lang muna, Master. Hindi mo kailangang dalhin lahat mag-isa. ",
+    "Tel,\n\nHindi ko man alam kung ano yung pinagdadaanan mo ngayon, I hope this little message reminds you of one thing:\n\nHindi ka nagiisa.\n\nMaraming taong ang nagmamahal sayo. Maraming taong gusto kang makita na okay ulit.\n\nKasama ako doon.\n\nKaya pahinga ka lang muna, Master. Hindi mo kailangang dalhin lahat mag-isa. ",
 
     "Tel,\n\nMaybe today just isn't your day.\n\nAnd that's okay.\n\nHindi ibig sabihin na dahil pangit yung araw nato, pangit na rin ang lahat.\n\nOne bad day doesn't define you. One painful moment doesn't define your whole life.\n\nDarating din yung araw na mapapangiti ka ulit nang hindi mo pinipilit.\n\nHintayin lang natin. 🤍",
 
@@ -165,13 +165,11 @@ const openWhenLetters = [
     {
     id: "ow-Tel",
     title: "you're feeling so sadddddd",
-    messages: ["Kamusta ka na?.\n\n Huy wag ka magpapatalo sa lungkot at sa sakit! kaya mo yan kahit ano pa yan Tel! andito lang din ako pray ka palagi haaa, my phone is always open for you Tel. You can reach out anytime. Wag kang magdalawang isip na magreach out! Sabihin mo lang Hello, HAHAHAHAHA! smileee kanaaa :)).",
+    messages: ["Kamusta ka na?.\n\n Huy wag ka magpapatalo sa lungkot at sa sakit! kaya mo yan kahit ano pa yan Tel! andito lang din kami! pray ka palagi haaa, my phone is always open for you Tel. You can reach out anytime. Wag kang magdalawang isip na magreach out! Sabihin mo lang Hello, HAHAHAHAHA! smileee kanaaa :)).",
     
 
-      "Just reach out, okie? 🤍",
 
-      "Hoy Master,\n\nLonely era na naman ba? 😭\n\nSige lang, I'll allow it.\n\nPero don't stay there too long ha. 😤\n\nMessage someone.\n\n  Talk to your friends.  Go outside.\n\n  Or kahit humiga ka lang muna and listen to your favorite music.\n\n  You don't have to fight the feeling alone.\n\nAndito lang ako.",
-    "Tel,  You dont always have to be surrounded by people to be okay.\n\n  Sometimes you just need a little quiet.\n\n So if you want to be alone for a while, thats okay.\n\n  Just remember the difference between choosing some quiet time and thinking that nobody cares about you.\n\nBecause people do.:)) ",
+      
     
     ]
     },
@@ -659,6 +657,10 @@ HAHAHAHAHAHA. ❤️`
  //  },
 
  // ]
+// Defined empty so the Memories and Voicemail views render their empty states instead of throwing.
+const memories = [];
+const voicemailMessages = [];
+
 const musicItems = [
   {
     id: "song-1",
@@ -968,6 +970,8 @@ function saveHeardVoicemails(ids) {
 function setTheme(theme) {
   localStorage.setItem(STORAGE_KEYS.theme, theme);
   document.documentElement.setAttribute("data-theme", theme);
+  const metaTheme = document.querySelector('meta[name="theme-color"]');
+  if (metaTheme) metaTheme.setAttribute("content", theme === "dark" ? "#1c1916" : "#f7f3ee");
   document.querySelectorAll(".theme-btn").forEach((btn) => {
     const active = btn.dataset.theme === theme;
     btn.classList.toggle("active", active);
@@ -1072,6 +1076,8 @@ function navigateTo(viewId) {
   document.querySelectorAll(".nav-link, .mobile-nav-btn").forEach((btn) => {
     const isActive = btn.dataset.view === viewId;
     btn.classList.toggle("active", isActive);
+    if (isActive) btn.setAttribute("aria-current", "page");
+    else btn.removeAttribute("aria-current");
   });
 
   // Render view-specific content
@@ -1561,7 +1567,7 @@ function renderFavorites() {
 function renderMemories() {
   const grid = document.getElementById("memories-grid");
   if (memories.length === 0) {
-    grid.innerHTML = `<div class="empty-state"><p>No memories added yet</p><span>You can add them in the customization section of the script.</span></div>`;
+    grid.innerHTML = `<div class="empty-state"><p>...</p><span>.......</span></div>`;
     return;
   }
 
@@ -2362,3 +2368,135 @@ dakasiCup.addEventListener("click", () => {
     }, 400);
 
 });
+
+// ==============================
+// ENHANCEMENTS (appended)
+// ==============================
+function createConfetti(n = 40) {
+  const set = ["🌷", "🌸", "🌼", "🌹", "🌺", "✨", "🤍"];
+  for (let i = 0; i < n; i++) {
+    const c = document.createElement("span");
+    c.className = "confetti";
+    c.textContent = set[i % set.length];
+    c.setAttribute("aria-hidden", "true");
+    c.style.left = Math.random() * 100 + "vw";
+    c.style.top = "-10px";
+    c.style.fontSize = 1 + Math.random() * 0.9 + "rem";
+    c.style.setProperty("--confetti-x", (Math.random() - 0.5) * 160 + "px");
+    c.style.setProperty("--confetti-rotation", Math.random() * 720 - 360 + "deg");
+    c.style.animationDelay = Math.random() * 0.8 + "s";
+    c.style.animationDuration = 2.6 + Math.random() * 1.6 + "s";
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 5200);
+  }
+}
+
+function createHearts(x = window.innerWidth / 2, y = window.innerHeight / 2, n = 14) {
+  const set = ["🤍", "🌸", "🌷"];
+  for (let i = 0; i < n; i++) {
+    const h = document.createElement("span");
+    h.className = "heart-particle";
+    h.textContent = set[i % set.length];
+    h.setAttribute("aria-hidden", "true");
+    h.style.left = x + "px";
+    h.style.top = y + "px";
+    h.style.setProperty("--heart-x", (Math.random() - 0.5) * 220 + "px");
+    h.style.setProperty("--heart-y", -60 - Math.random() * 140 + "px");
+    h.style.animationDelay = Math.random() * 0.25 + "s";
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 3500);
+  }
+}
+
+(function enhance() {
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Scroll-triggered reveal for lists (re-applies whenever a list re-renders)
+  const io = "IntersectionObserver" in window && !reduce
+    ? new IntersectionObserver((entries) => {
+        entries.forEach((en) => {
+          if (!en.isIntersecting) return;
+          const el = en.target;
+          io.unobserve(el);
+          el.classList.add("in");
+          el.addEventListener("animationend", function done(ev) {
+            if (ev.target !== el) return;
+            el.classList.remove("reveal", "in");
+            el.removeEventListener("animationend", done);
+          });
+        });
+      }, { threshold: 0.08, rootMargin: "0px 0px -30px 0px" })
+    : null;
+
+  ["mood-grid", "openwhen-grid", "memories-grid", "music-list", "favorites-list", "journal-list", "voicemail-list"].forEach((id) => {
+    const box = document.getElementById(id);
+    if (!box || !io) return;
+    const tag = () => {
+      [...box.children].forEach((el, i) => {
+        if (el.dataset.rv) return;
+        el.dataset.rv = "1";
+        el.classList.add("reveal");
+        el.style.setProperty("--d", Math.min(i, 8) * 60 + "ms");
+        io.observe(el);
+      });
+    };
+    tag();
+    new MutationObserver(tag).observe(box, { childList: true });
+  });
+
+  // Keyboard access for the tappable bouquet and cup
+  [document.getElementById("bouquet"), document.querySelector(".dakasi-cup-wrapper")].forEach((el) => {
+    if (!el) return;
+    el.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); el.click(); }
+    });
+  });
+
+  // Modals: trap Tab, return focus to the trigger on close
+  let lastOutside = null;
+  const remember = (e) => {
+    const t = e.target.closest ? e.target.closest("button, a, [role=button]") : null;
+    if (t && !t.closest(".modal, .birthday-modal")) lastOutside = t;
+  };
+  document.addEventListener("pointerdown", remember, true);
+  document.addEventListener("focusin", remember, true);
+  const returnTo = new WeakMap();
+  document.querySelectorAll(".modal, .birthday-modal").forEach((m) => {
+    new MutationObserver(() => {
+      if (!m.hidden) returnTo.set(m, lastOutside);
+      else {
+        const p = returnTo.get(m);
+        if (p && p.isConnected) p.focus({ preventScroll: true });
+        returnTo.delete(m);
+      }
+    }).observe(m, { attributes: true, attributeFilter: ["hidden"] });
+    m.addEventListener("keydown", (e) => {
+      if (e.key !== "Tab" || m.hidden) return;
+      const f = [...m.querySelectorAll('button, [href], input, textarea, select, [tabindex]:not([tabindex="-1"])')]
+        .filter((x) => !x.disabled && !x.hidden && x.offsetParent !== null);
+      if (!f.length) return;
+      const first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
+  });
+
+  // Voicemail progress fill
+  const fill = (r) => r.style.setProperty("--p", r.value + "%");
+  document.addEventListener("timeupdate", (e) => {
+    const card = e.target.closest && e.target.closest(".voicemail-card");
+    const r = card && card.querySelector(".voicemail-progress");
+    if (r) requestAnimationFrame(() => fill(r));
+  }, true);
+  document.addEventListener("input", (e) => {
+    if (e.target.classList && e.target.classList.contains("voicemail-progress")) fill(e.target);
+  });
+
+  // Small heart burst when something is saved
+  document.addEventListener("click", (e) => {
+    const b = e.target.closest('[data-action="save"], #letter-save-fav');
+    if (!b || reduce) return;
+    const r = b.getBoundingClientRect();
+    createHearts(r.left + r.width / 2, r.top + r.height / 2, 7);
+  });
+})();
